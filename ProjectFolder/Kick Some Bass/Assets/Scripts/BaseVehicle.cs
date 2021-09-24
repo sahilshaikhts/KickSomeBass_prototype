@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MyInterfaces;
-
 public class BaseVehicle : MonoBehaviour
 {
     [SerializeField] protected GameObject m_seat;
