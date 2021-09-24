@@ -8,6 +8,7 @@ public class BaseVehicle : MonoBehaviour
     [SerializeField] protected GameObject m_seat;
     protected GameObject m_driver;
 
+
     public void Initialize(GameObject aDriver)
     {
         if(GetComponent<IControllable>()!=null)
