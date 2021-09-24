@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fish_Base : MonoBehaviour
+public class Flock : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
