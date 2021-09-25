@@ -4,19 +4,42 @@ using UnityEngine;
 
 public class HookController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float MovementSpeed = 1.0f;
+    float velocity;
+
+    int i = 0;
+
     void Start()
     {
-       
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        transform.position += direction * 5.0f * Time.deltaTime;
+       // if(horizontal > 0.001f || horizontal < 0.001f)
+        {
+            Vector3 direction = new Vector3(horizontal, 0.0f, vertical).normalized;
+            transform.position += direction * MovementSpeed * Time.deltaTime;
+
+            if(direction.magnitude >= 0.1f)
+            {
+                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                float smoothTargetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref velocity, 0.75f);
+                transform.rotation = Quaternion.Euler(0, smoothTargetAngle, 0);
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Fish")
+        {
+            i++;
+            Debug.Log("Fish-Caught " + i);
+            Destroy(other.gameObject);
+        }
     }
 }

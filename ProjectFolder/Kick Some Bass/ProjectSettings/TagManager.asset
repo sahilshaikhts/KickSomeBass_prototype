@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Humanoid
   - ground
+  - Fish
   layers:
   - Default
   - TransparentFX
