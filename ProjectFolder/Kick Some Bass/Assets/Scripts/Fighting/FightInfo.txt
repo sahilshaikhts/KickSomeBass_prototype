@@ -1,0 +1,22 @@
+All the underlying functions are in Core.
+
+To create new Ability Type ->
+	1. In Abilities folder, create a script inherting from IFightAbility.
+	2. Implement the interface/abstract functions with appropriate code.
+	3. In GetAbilityName() make sure to pass a unique and appropriate name for the ability.
+	4. In the editor, attach the new abilityType script to AbilityRegistry in the scene hierarchy.
+	 
+
+To give the player new ability(Editor Only) ->
+	1. In the editor, in PlayerController, under PlayerAbilities array Add(+) new ability's name(same as the new abiltyType's script) 
+	2. Along with that, Add(+) an appropriate Input KeyCode under PlayerInput array.
+
+
+To give the AI new ability(Editor Only) ->
+	1. In the editor, in AIController, under EnemyAbilities array Add(+) new ability's name(same as the new abiltyType's script).
+	
+
+To create new AI Type ->
+	1. In AIController folder, create a script inherting from AIFighterController.
+	2. Implement the EvaluateAppropriateAction() with the code to determine action against player characater 
+	   and return the appropriate string associated with some FightAbility.
