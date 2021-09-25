@@ -17,11 +17,10 @@ public class HookController : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
 
-       // if(horizontal > 0.001f || horizontal < 0.001f)
+        if(horizontal > 0.001f || horizontal < 0.001f)
         {
-            Vector3 direction = new Vector3(horizontal, 0.0f, vertical).normalized;
+            Vector3 direction = new Vector3(horizontal, 0.0f, 1.0f).normalized;
             transform.position += direction * MovementSpeed * Time.deltaTime;
 
             if(direction.magnitude >= 0.1f)
