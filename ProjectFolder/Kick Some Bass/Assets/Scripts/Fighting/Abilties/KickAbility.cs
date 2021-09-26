@@ -5,12 +5,12 @@ using AbilitySpace;
 
 public class KickAbility : IFightAbility
 {
-    public override void PerformAction()
+    public override void PerformAction(GameObject aObject)
     {
         Debug.Log("Kicked!!! Baam");
     }
 
-    public override void Animation()
+    public override void Animation(GameObject aObject)
     {
 
     }

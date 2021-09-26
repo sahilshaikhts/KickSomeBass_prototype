@@ -3,13 +3,14 @@ using UnityEngine;
 public abstract class AIFighterController : MonoBehaviour
 {
     [SerializeField] protected string[] enemyAbilities;
-    [SerializeField] FighterCharacter EnemyAI;
+    [SerializeField] BaseFighterCharacter EnemyAI;
 
     //Will run the algorithm to get appropriate action for specific AI.
     public abstract string EvaluateAppropriateAction();
 
     public virtual void Update()
     {
+
         string currentActionName = EvaluateAppropriateAction();
         ExecuteAction(currentActionName);
     }
@@ -20,4 +21,6 @@ public abstract class AIFighterController : MonoBehaviour
 
         EnemyAI.ExecuteAction(AbilitiesFactory.GetAbility(abilityName));
     }
+
+    public abstract Vector3 GetMovementDirection();
 }

@@ -6,6 +6,11 @@ public class SwordFishFighterController : AIFighterController
 {
     public override string EvaluateAppropriateAction()
     {
-        return enemyAbilities[0];
+        return "Movement";
+    }
+
+    public override Vector3 GetMovementDirection()
+    {
+        return Vector3.zero;
     }
 }

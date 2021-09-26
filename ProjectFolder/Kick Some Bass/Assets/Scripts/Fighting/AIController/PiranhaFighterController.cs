@@ -8,4 +8,9 @@ public class PiranhaFighterController : AIFighterController
     {
         return enemyAbilities[0];
     }
+
+    public override Vector3 GetMovementDirection()
+    {
+        return Vector3.zero;
+    }
 }

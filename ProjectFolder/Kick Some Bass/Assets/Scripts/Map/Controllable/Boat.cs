@@ -35,6 +35,7 @@ public class Boat : BaseVehicle, IControllable
     public void Move(Vector3 aDirection)
     {
         Vector3 finalVelocity = aDirection.z * transform.forward;
+
         finalVelocity *= m_speed;
 
         if (aDirection.x != 0)
