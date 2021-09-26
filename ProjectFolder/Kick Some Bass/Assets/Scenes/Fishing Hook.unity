@@ -469,6 +469,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &895698872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 895698877}
+  - component: {fileID: 895698873}
+  m_Layer: 0
+  m_Name: Flock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &895698873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895698872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec09ba2a1b1e4344ca9a44ab11b18c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstaclePrefab: {fileID: 7391217967124325501, guid: 597625062a5c7e94fa6b0a807a158c8f,
+    type: 3}
+  boidPrefab: {fileID: 3702411550256936832, guid: cf503d1b7a4fb25499d3ad14f68c998d,
+    type: 3}
+  numberOfBoids: 30
+  numberOfObstacles: 1
+  boids: []
+  spawnRadius: 6
+  speed: 0.5
+  turnspeed: 60
+  FOV: 60
+  NeighborDistanceSquared: 64
+  cohesionWeight: 3
+  alignmentWeight: 2
+  avoidanceWeight: 5
+  noise: 0.1
+  AvoidMininum: 4
+--- !u!4 &895698877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895698872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 61.28, y: -0.38, z: 82.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &991209550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -554,6 +614,8 @@ GameObject:
   - component: {fileID: 1642640366}
   - component: {fileID: 1642640365}
   - component: {fileID: 1642640364}
+  - component: {fileID: 1642640368}
+  - component: {fileID: 1642640367}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -617,8 +679,62 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642640367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642640363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec09ba2a1b1e4344ca9a44ab11b18c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstaclePrefab: {fileID: 0}
+  boidPrefab: {fileID: 0}
+  numberOfBoids: 20
+  numberOfObstacles: 10
+  boids: []
+  spawnRadius: 10
+  speed: 1
+  turnspeed: 30
+  FOV: 60
+  NeighborDistanceSquared: 64
+  cohesionWeight: 1
+  alignmentWeight: 0
+  avoidanceWeight: 1
+  noise: 0.1
+  AvoidMininum: 3
+--- !u!114 &1642640368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642640363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec09ba2a1b1e4344ca9a44ab11b18c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstaclePrefab: {fileID: 0}
+  boidPrefab: {fileID: 0}
+  numberOfBoids: 20
+  numberOfObstacles: 10
+  boids: []
+  spawnRadius: 10
+  speed: 1
+  turnspeed: 30
+  FOV: 60
+  NeighborDistanceSquared: 64
+  cohesionWeight: 1
+  alignmentWeight: 0
+  avoidanceWeight: 1
+  noise: 0.1
+  AvoidMininum: 3
 --- !u!1001 &3176415789842340568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -708,7 +824,7 @@ PrefabInstance:
     - target: {fileID: 3702411550256936836, guid: cf503d1b7a4fb25499d3ad14f68c998d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3702411550256936836, guid: cf503d1b7a4fb25499d3ad14f68c998d,
         type: 3}
