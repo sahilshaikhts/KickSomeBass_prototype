@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
-public class BlockPunchAbility : IFightAbility
+public class BlockPunchAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction()
     {
@@ -18,5 +18,10 @@ public class BlockPunchAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "BlockPunch";
+    }
+
+    public float EvaulateAbilityUtility()
+    {
+        throw new System.NotImplementedException();
     }
 }

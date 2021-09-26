@@ -758,6 +758,7 @@ MonoBehaviour:
   enemyAbilities:
   - Kick
   - Movement
+  - Punch
   EnemyAI: {fileID: 1289324558}
 --- !u!1 &1866799522
 GameObject:
@@ -773,6 +774,8 @@ GameObject:
   - component: {fileID: 1866799526}
   - component: {fileID: 1866799527}
   - component: {fileID: 1866799528}
+  - component: {fileID: 1866799529}
+  - component: {fileID: 1866799530}
   m_Layer: 0
   m_Name: AbilityRegistry
   m_TagString: Untagged
@@ -852,6 +855,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2dbe5e56e823204da7436b0625aa857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1866799529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866799522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da61364d1c43c64baed0250f1f7a890, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1866799530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866799522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a26d8d900c995c4baf614ff9187acf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2078314515

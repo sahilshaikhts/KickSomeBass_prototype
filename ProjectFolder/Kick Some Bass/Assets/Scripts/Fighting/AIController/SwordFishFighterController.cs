@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SwordFishFighterController : AIFighterController
 {
-    public override string EvaluateAppropriateAction()
-    {
-        return enemyAbilities[0];
-    }
+    //public override float EvaulateAbilityUtility(string abilityName)
+    //{
+    //}
+
+
+
 }

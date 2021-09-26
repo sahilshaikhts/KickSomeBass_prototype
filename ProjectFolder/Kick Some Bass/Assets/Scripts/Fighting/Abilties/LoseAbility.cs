@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
-public class MovementAbility : IFightAbility, IUtilityAI
+public class LoseAbility : IFightAbility
 {
     public override void PerformAction()
     {
-        Debug.Log("I'm Moving!!!");
+        Debug.Log("Noo...Lost");
     }
 
     public override void Animation()
@@ -17,6 +17,6 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
     public override string GetAbilityName()
     {
-        return "Movement";
+        return "Lose";
     }
 }

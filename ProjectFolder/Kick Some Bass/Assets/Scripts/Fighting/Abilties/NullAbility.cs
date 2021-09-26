@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
-public class MovementAbility : IFightAbility, IUtilityAI
+public class NullAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction()
     {
-        Debug.Log("I'm Moving!!!");
+        Debug.Log("Null Ability Called!");
     }
 
     public override void Animation()
@@ -17,6 +17,11 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
     public override string GetAbilityName()
     {
-        return "Movement";
+        return "Null";
+    }
+
+    public float EvaulateAbilityUtility()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
-public class PunchAbility : IFightAbility
+public class PunchAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction()
     {
@@ -18,5 +18,10 @@ public class PunchAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Punch";
+    }
+
+    public float EvaulateAbilityUtility()
+    {
+        return 0;
     }
 }

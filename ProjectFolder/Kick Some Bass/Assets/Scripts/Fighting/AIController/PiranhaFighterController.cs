@@ -4,8 +4,4 @@ using UnityEngine;
 
 public class PiranhaFighterController : AIFighterController
 {
-    public override string EvaluateAppropriateAction()
-    {
-        return enemyAbilities[0];
-    }
 }
