@@ -49,6 +49,8 @@ public abstract class IFighterCharacter : MonoBehaviour
     #region getters
 
     public float GetHealth() { return m_health; }
+    public float GetMaxHealth() { return m_maxHealth; }
+
     public float GetStamina() { return m_stamina; }
     public bool IsDead() { return m_IsDead; }
     public float GetMoveSpeed() { return m_speed; }

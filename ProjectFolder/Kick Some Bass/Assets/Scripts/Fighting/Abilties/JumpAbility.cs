@@ -48,7 +48,6 @@ public class JumpAbility : IFightAbility, IUtilityAI
     {
         return 0;
     }
-
     public bool GetVeto() { return m_veto; }
 
 }

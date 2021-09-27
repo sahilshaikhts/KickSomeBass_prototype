@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
-using UnityEngine.Assertions;
+using UtilityAIHelpers;
 
 public class HealAbility : IFightAbility, IUtilityAI
 {
@@ -25,11 +23,13 @@ public class HealAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        if(Fighter.GetHealth() < 35)
-        {
+        Consideration playerHealth = new Consideration(CurveTypes.Linear, -1.5f, 1, 1, 0);
 
-        }
-        return 3.0f;
+        Fighter.DealDamage(1);
+        float score = ResponseCurve.GetOutputValue(playerHealth, Fighter.GetHealth() / Fighter.GetMaxHealth());
+
+        Debug.Log("Utility Score : " + score + ", PlayerHealth : " + Fighter.GetHealth());
+        return score;
     }
 
     public bool GetVeto() { return m_veto; }
