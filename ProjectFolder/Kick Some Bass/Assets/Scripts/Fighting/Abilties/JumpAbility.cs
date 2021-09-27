@@ -6,20 +6,20 @@ using AbilitySpace;
 
 public class JumpAbility : IFightAbility
 {
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
-        Assert.IsNotNull(aObject.GetComponent<BaseFighterCharacter>());
-        Assert.IsNotNull(aObject.GetComponent<Rigidbody>());
-        if (CheckIfOnGround(aObject))
+        Assert.IsNotNull(fighter);
+        Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
+        if (CheckIfOnGround(fighter))
         {
-            aObject.GetComponent<Rigidbody>().AddForce(aObject.transform.up * 10, ForceMode.VelocityChange);
+            fighter.GetComponent<Rigidbody>().AddForce(fighter.transform.up * 10, ForceMode.VelocityChange);
         }
     }
 
 
-    bool CheckIfOnGround(GameObject aObject)
+    bool CheckIfOnGround(IFighterCharacter fighter)
     {
-        Ray ray = new Ray(aObject.transform.position+Vector3.up, Vector3.down);
+        Ray ray = new Ray(fighter.transform.position+Vector3.up, Vector3.down);
 
         LayerMask mask = 1 << LayerMask.NameToLayer("Ground");
 
@@ -31,7 +31,7 @@ public class JumpAbility : IFightAbility
         return false;
     }
 
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
     }
 

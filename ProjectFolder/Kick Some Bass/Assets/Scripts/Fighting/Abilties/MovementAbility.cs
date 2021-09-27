@@ -6,54 +6,56 @@ using AbilitySpace;
 
 public class MovementAbility : IFightAbility
 {
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
-        Assert.IsNotNull(aObject.GetComponent<BaseFighterCharacter>());
-        Assert.IsNotNull(aObject.GetComponent<Rigidbody>());
+        Assert.IsNotNull(fighter);
+        Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
 
-        RotateTowardsaOpponent(aObject);
+        Rigidbody fighterRigidBody = fighter.GetComponent<Rigidbody>();
+
+        RotateTowardsaOpponent(fighter);
 
 
-        if (aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection().sqrMagnitude > .9f * .9f)
+        if (fighter.GetMovementDirection().sqrMagnitude > .9f * .9f)
         {
-            Vector3 inputDirection = aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection();
-            Vector3 moveDirection = (aObject.transform.right * aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection().x) + (aObject.transform.forward * aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection().z);
+            Vector3 inputDirection = fighter.GetMovementDirection();
+            Vector3 moveDirection = (fighter.transform.right * fighter.GetMovementDirection().x) + (fighter.transform.forward * fighter.GetMovementDirection().z);
 
-            moveDirection *= aObject.GetComponent<BaseFighterCharacter>().GetMoveSpeed();
+            moveDirection *= fighter.GetMoveSpeed();
 
             #region temp 
             //ToDo write movement that add drag in the direction opposite to velocity and other things in actual project code
-            float maxSpeed = aObject.GetComponent<BaseFighterCharacter>().GetMaxMoveSpeed();
+            float maxSpeed = fighter.GetMaxMoveSpeed();
 
-            if (inputDirection.x > 0 && aObject.GetComponent<Rigidbody>().velocity.x > maxSpeed) moveDirection.x = 0;
-            if (inputDirection.x < 0 && aObject.GetComponent<Rigidbody>().velocity.x < -maxSpeed) moveDirection.x = 0;
-            if (inputDirection.z > 0 && aObject.GetComponent<Rigidbody>().velocity.z > maxSpeed) moveDirection.z = 0;
-            if (inputDirection.z < 0 && aObject.GetComponent<Rigidbody>().velocity.z < -maxSpeed) moveDirection.z = 0;
+            if (inputDirection.x > 0 && fighterRigidBody.velocity.x > maxSpeed) moveDirection.x = 0;
+            if (inputDirection.x < 0 && fighterRigidBody.velocity.x < -maxSpeed) moveDirection.x = 0;
+            if (inputDirection.z > 0 && fighterRigidBody.velocity.z > maxSpeed) moveDirection.z = 0;
+            if (inputDirection.z < 0 && fighterRigidBody.velocity.z < -maxSpeed) moveDirection.z = 0;
 
             #endregion
 
-            aObject.GetComponent<Rigidbody>().AddForce(moveDirection, ForceMode.Acceleration);
+            fighterRigidBody.AddForce(moveDirection, ForceMode.Acceleration);
         }
         else
         {
-            aObject.GetComponent<Rigidbody>().AddForce(-5 * new Vector3(aObject.GetComponent<Rigidbody>().velocity.x, 0, aObject.GetComponent<Rigidbody>().velocity.z).normalized);
+            fighterRigidBody.AddForce(-5 * new Vector3(fighterRigidBody.velocity.x, 0, fighterRigidBody.velocity.z).normalized);
      
             return;
         }
 
     }
 
-    void RotateTowardsaOpponent(GameObject aObject)
+    void RotateTowardsaOpponent(IFighterCharacter fighter)
     {
-        Quaternion lookTowards = Quaternion.LookRotation((aObject.GetComponent<BaseFighterCharacter>().GetOpponent().transform.position - aObject.transform.position));
+        Quaternion lookTowards = Quaternion.LookRotation((fighter.GetOpponent().transform.position - fighter.transform.position));
 
         lookTowards.x = 0;
         lookTowards.z = 0;
 
-        aObject.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(aObject.GetComponent<Rigidbody>().rotation, lookTowards.normalized,2*Time.deltaTime);
+        fighter.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(fighter.GetComponent<Rigidbody>().rotation, lookTowards.normalized,2*Time.deltaTime);
     }
 
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
 
     }

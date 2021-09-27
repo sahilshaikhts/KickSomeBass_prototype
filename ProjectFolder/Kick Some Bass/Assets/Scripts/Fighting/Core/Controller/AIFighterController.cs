@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class AIFighterController : MonoBehaviour
 {
     [SerializeField] protected string[] enemyAbilities;
-    [SerializeField] BaseFighterCharacter EnemyAI;
+    [SerializeField] IFighterCharacter EnemyAI;
 
     //Will run the algorithm to get appropriate action for specific AI.
     public abstract string EvaluateAppropriateAction();

@@ -6,28 +6,28 @@ using AbilitySpace;
 
 public class DashAbility : IFightAbility
 {
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
-        Assert.IsNotNull(aObject.GetComponent<BaseFighterCharacter>());
-        Assert.IsNotNull(aObject.GetComponent<Rigidbody>());
+        Assert.IsNotNull(fighter);
+        Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
 
 
         //If not already dashing
-        if (!aObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Dash"))
+        if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Dash"))
         {
-            Vector3 moveDirection = (aObject.transform.right * aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection().x) + (aObject.transform.forward * aObject.GetComponent<BaseFighterCharacter>().GetMovementDirection().z);
+            Vector3 moveDirection = (fighter.transform.right * fighter.GetMovementDirection().x) + (fighter.transform.forward * fighter.GetMovementDirection().z);
 
-            if (aObject.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
+            if (fighter.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
-                aObject.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 20, ForceMode.VelocityChange);
-                Animation(aObject);
+                fighter.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 20, ForceMode.VelocityChange);
+                Animation(fighter);
             }
         }
     }
 
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
-        aObject.GetComponent<Animator>().SetTrigger("Dash");
+        fighter.GetComponent<Animator>().SetTrigger("Dash");
     }
 
     public override string GetAbilityName()

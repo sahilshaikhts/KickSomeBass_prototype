@@ -7,34 +7,34 @@ using UnityEngine.Assertions;
 public class PunchAbility : IFightAbility
 {
 
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
-        Assert.IsNotNull(aObject.GetComponent<BaseFighterCharacter>());
+        Assert.IsNotNull(fighter);
         Debug.Log("Punch");
 
-        if (!aObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
-            Animation(aObject);
+            Animation(fighter);
 
             //Check if in arm range
             RaycastHit hit;
-            Ray ray = new Ray(aObject.transform.position + aObject.transform.up, aObject.transform.forward);
+            Ray ray = new Ray(fighter.transform.position + fighter.transform.up, fighter.transform.forward);
 
             if (Physics.SphereCast(ray,0.5f,out hit,1.5f))
             {
-                if (hit.collider.gameObject == aObject.GetComponent<BaseFighterCharacter>().GetOpponent())
+                if (hit.collider.gameObject == fighter.GetOpponent())
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(aObject.transform.forward * 20, ForceMode.Impulse);
-                    hit.collider.gameObject.GetComponent<BaseFighterCharacter>().DealDamage(20);
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 20, ForceMode.Impulse);
+                    hit.collider.gameObject.GetComponent<IFighterCharacter>().DealDamage(20);
                 }
             }
 
         }
 
     }
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
-        aObject.GetComponent<Animator>().SetTrigger("Punch");
+        fighter.GetComponent<Animator>().SetTrigger("Punch");
 
     }
 

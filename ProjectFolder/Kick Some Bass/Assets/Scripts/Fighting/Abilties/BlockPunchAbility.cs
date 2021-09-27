@@ -6,19 +6,19 @@ using UnityEngine.Assertions;
 
 public class BlockPunchAbility : IFightAbility
 {
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
-        Assert.IsNotNull(aObject.GetComponent<BaseFighterCharacter>());
+        Assert.IsNotNull(fighter);
 
-        if (!aObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
+        if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
         {
-            Animation(aObject);
+            Animation(fighter);
         }
     }
 
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
-        aObject.GetComponent<Animator>().SetTrigger("BlockPunch");
+        fighter.GetComponent<Animator>().SetTrigger("BlockPunch");
     }
 
     public override string GetAbilityName()

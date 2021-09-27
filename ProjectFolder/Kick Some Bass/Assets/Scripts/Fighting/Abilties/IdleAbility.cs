@@ -6,12 +6,12 @@ using AbilitySpace;
 
 public class IdleAbility : IFightAbility
 {
-    public override void PerformAction(GameObject aObject)
+    public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log("Idle");
     }
 
-    public override void Animation(GameObject aObject)
+    public override void Animation(IFighterCharacter fighter)
     {
     }
 
