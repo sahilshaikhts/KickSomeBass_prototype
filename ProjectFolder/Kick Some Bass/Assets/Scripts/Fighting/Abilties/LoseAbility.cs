@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 using AbilitySpace;
 
-public class IdleAbility : IFightAbility, IUtilityAI
+public class LoseAbility : IFightAbility, IUtilityAI
 {
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter InstigatorObject)
     {
         Debug.Log(GetAbilityName());
     }
 
-    public override void Animation(IFighterCharacter fighter)
+    public override void Animation(IFighterCharacter InstigatorObject)
     {
+
     }
 
     public override string GetAbilityName()
     {
-        return "Idle";
+        return "Lose";
     }
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)

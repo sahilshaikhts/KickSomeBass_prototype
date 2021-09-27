@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
-public class KickAbility : IFightAbility
+public class KickAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction(IFighterCharacter fighter)
     {
-        Debug.Log("Kicked!!! Baam");
+        Debug.Log(GetAbilityName());
     }
 
     public override void Animation(IFighterCharacter fighter)
@@ -18,5 +18,10 @@ public class KickAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Kick";
+    }
+
+    public float EvaulateAbilityUtility(IFighterCharacter Fighter)
+    {
+        return 0;
     }
 }

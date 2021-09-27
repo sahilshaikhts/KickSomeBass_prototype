@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
 
-public class JumpAbility : IFightAbility
+public class JumpAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction(IFighterCharacter fighter)
     {
+        Debug.Log(GetAbilityName());
+
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
         if (CheckIfOnGround(fighter))
@@ -38,5 +40,10 @@ public class JumpAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Jump";
+    }
+
+    public float EvaulateAbilityUtility(IFighterCharacter Fighter)
+    {
+        return 0;
     }
 }

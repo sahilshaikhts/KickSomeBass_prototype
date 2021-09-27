@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
 
-public class DashAbility : IFightAbility
+public class DashAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction(IFighterCharacter fighter)
     {
+        Debug.Log(GetAbilityName());
+
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
 
@@ -33,5 +35,10 @@ public class DashAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Dash";
+    }
+
+    public float EvaulateAbilityUtility(IFighterCharacter Fighter)
+    {
+        return 0;
     }
 }

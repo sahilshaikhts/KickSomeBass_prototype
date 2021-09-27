@@ -4,31 +4,29 @@ using UnityEngine;
 using AbilitySpace;
 using UnityEngine.Assertions;
 
-public class BlockPunchAbility : IFightAbility, IUtilityAI
+public class HealAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
-
-        Assert.IsNotNull(fighter);
-
-        if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
-        {
-            Animation(fighter);
-        }
     }
 
     public override void Animation(IFighterCharacter fighter)
     {
-        fighter.GetComponent<Animator>().SetTrigger("BlockPunch");
+
     }
 
     public override string GetAbilityName()
     {
-        return "BlockPunch";
+        return "Heal";
     }
+
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        return 0;
+        if(Fighter.GetHealth() < 35)
+        {
+
+        }
+        return 3.0f;
     }
 }

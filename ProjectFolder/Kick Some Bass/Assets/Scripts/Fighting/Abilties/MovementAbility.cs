@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
 
-public class MovementAbility : IFightAbility
+public class MovementAbility : IFightAbility, IUtilityAI
 {
     public override void PerformAction(IFighterCharacter fighter)
     {
+        Debug.Log(GetAbilityName());
+
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
 
@@ -63,5 +65,10 @@ public class MovementAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Movement";
+    }
+
+    public float EvaulateAbilityUtility(IFighterCharacter Fighter)
+    {
+        return 0;
     }
 }

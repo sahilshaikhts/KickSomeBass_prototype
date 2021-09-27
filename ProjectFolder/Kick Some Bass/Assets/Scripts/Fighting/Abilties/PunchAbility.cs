@@ -4,13 +4,14 @@ using UnityEngine;
 using AbilitySpace;
 using UnityEngine.Assertions;
 
-public class PunchAbility : IFightAbility
+public class PunchAbility : IFightAbility, IUtilityAI
 {
 
     public override void PerformAction(IFighterCharacter fighter)
     {
+        Debug.Log(GetAbilityName());
+
         Assert.IsNotNull(fighter);
-        Debug.Log("Punch");
 
         if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
@@ -41,5 +42,10 @@ public class PunchAbility : IFightAbility
     public override string GetAbilityName()
     {
         return "Punch";
+    }
+
+    public float EvaulateAbilityUtility(IFighterCharacter Fighter)
+    {
+        return 0;
     }
 }
