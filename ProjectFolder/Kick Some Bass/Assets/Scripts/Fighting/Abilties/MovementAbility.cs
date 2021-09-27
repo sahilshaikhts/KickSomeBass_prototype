@@ -18,7 +18,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
         RotateTowardsaOpponent(fighter);
 
 
-        if (fighter.GetMovementDirection().sqrMagnitude > .9f * .9f)
+        if (fighter.GetMovementDirection().sqrMagnitude > 0)
         {
             Vector3 inputDirection = fighter.GetMovementDirection();
             Vector3 moveDirection = (fighter.transform.right * fighter.GetMovementDirection().x) + (fighter.transform.forward * fighter.GetMovementDirection().z);
@@ -40,8 +40,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
         }
         else
         {
-            fighterRigidBody.AddForce(-5 * new Vector3(fighterRigidBody.velocity.x, 0, fighterRigidBody.velocity.z).normalized);
-     
+            fighterRigidBody.AddForce(-10 * new Vector3(fighterRigidBody.velocity.x, 0, fighterRigidBody.velocity.z).normalized);
             return;
         }
 

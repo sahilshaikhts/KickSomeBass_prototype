@@ -32,6 +32,9 @@ public class AIFighterController : MonoBehaviour
     {
         string currentActionName = EvaluateAppropriateAction();
         ExecuteAction(currentActionName);
+
+
+        ExecuteAction("Movement");
     }
 
     private void ExecuteAction(string abilityName)

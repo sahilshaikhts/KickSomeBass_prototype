@@ -3,7 +3,6 @@ using AbilitySpace;
 
 public class OpponentFighterCharacter : IFighterCharacter
 {
-    //make a base class for for controller for both player and enemy?
     [SerializeField] AIFighterController m_controller;
 
     public override void ExecuteAction(IFightAbility fightAbility)

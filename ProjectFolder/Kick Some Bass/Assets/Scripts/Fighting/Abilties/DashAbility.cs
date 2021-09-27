@@ -21,7 +21,7 @@ public class DashAbility : IFightAbility, IUtilityAI
 
             if (fighter.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
-                fighter.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * 20, ForceMode.VelocityChange);
+                fighter.GetComponent<Rigidbody>().AddForce(moveDirection.normalized, ForceMode.VelocityChange);
                 Animation(fighter);
             }
         }

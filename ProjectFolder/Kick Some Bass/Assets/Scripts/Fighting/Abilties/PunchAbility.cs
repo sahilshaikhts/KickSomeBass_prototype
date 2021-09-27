@@ -21,18 +21,21 @@ public class PunchAbility : IFightAbility, IUtilityAI
             RaycastHit hit;
             Ray ray = new Ray(fighter.transform.position + fighter.transform.up, fighter.transform.forward);
 
-            if (Physics.SphereCast(ray,0.5f,out hit,1.5f))
+            if (Physics.SphereCast(ray, 0.5f, out hit, 1.5f))
             {
                 if (hit.collider.gameObject == fighter.GetOpponent())
                 {
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 20, ForceMode.Impulse);
                     hit.collider.gameObject.GetComponent<IFighterCharacter>().DealDamage(20);
+
                 }
             }
 
+            fighter.ChangeStamina(-10);
         }
 
     }
+
     public override void Animation(IFighterCharacter fighter)
     {
         fighter.GetComponent<Animator>().SetTrigger("Punch");

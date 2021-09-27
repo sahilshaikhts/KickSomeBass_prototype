@@ -8,14 +8,8 @@ public class FighterCameraController : MonoBehaviour
     [SerializeField] Transform m_player;
     [SerializeField] Transform m_opponent;
 
-    [SerializeField] float min_xRot = 0, max_xRot = 0;
-
     [SerializeField] Vector3 m_offset;
 
-
-    float xRot = 0, yRot = 0;
-
-    float zDistance;
 
     void Start()
     {
@@ -23,10 +17,6 @@ public class FighterCameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void Update()
-    {
-        UpdateMouseInput();
-    }
     private void LateUpdate()
     {
         CalculateZoomDistance();
@@ -54,9 +44,10 @@ public class FighterCameraController : MonoBehaviour
 
     void PositionCamera()
     {
-        m_Camera.transform.rotation = m_player.GetComponent<Rigidbody>().rotation;
+        Vector3 offset = new Vector3(0, -10, 0);
+        m_Camera.transform.rotation = Quaternion.LookRotation(m_player.transform.forward - m_player.transform.right*1.5f);
 
-        m_Camera.transform.position = CalculateCameraPosition() + m_offset;
+        m_Camera.transform.position = CalculateCameraPosition()+transform.forward*2;
     }
 
     void CalculateZoomDistance()
@@ -67,15 +58,5 @@ public class FighterCameraController : MonoBehaviour
         float viewportDistance = Vector2.Distance(playerViewport, opponenetViewport);
 
     }
-
-
-    void UpdateMouseInput()
-    {
-        xRot += Input.GetAxis("Mouse X") * 3;
-
-        yRot -= Input.GetAxis("Mouse Y") * 5;
-        yRot = Mathf.Clamp(yRot, min_xRot, max_xRot);
-    }
-
 }
 
