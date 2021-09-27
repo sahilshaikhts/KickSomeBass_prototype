@@ -6,6 +6,8 @@ using AbilitySpace;
 
 public class JumpAbility : IFightAbility, IUtilityAI
 {
+    bool m_veto = false;
+
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
@@ -46,4 +48,7 @@ public class JumpAbility : IFightAbility, IUtilityAI
     {
         return 0;
     }
+
+    public bool GetVeto() { return m_veto; }
+
 }

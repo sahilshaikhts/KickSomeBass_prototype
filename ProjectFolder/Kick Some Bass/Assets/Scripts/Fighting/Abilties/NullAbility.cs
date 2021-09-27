@@ -6,7 +6,6 @@ using UnityEngine.Assertions;
 
 public class NullAbility : IFightAbility, IUtilityAI
 {
-
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
@@ -24,4 +23,7 @@ public class NullAbility : IFightAbility, IUtilityAI
     {
         return 0;
     }
+
+    public bool GetVeto() { return false; }
+
 }

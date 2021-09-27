@@ -505,8 +505,6 @@ MonoBehaviour:
   m_Camera: {fileID: 774355538}
   m_player: {fileID: 1820599708}
   m_opponent: {fileID: 1289324557}
-  min_xRot: 0
-  max_xRot: 40
   m_offset: {x: 0, y: 0, z: 0}
 --- !u!1 &455568901
 GameObject:
@@ -1584,6 +1582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_opponent: {fileID: 1820599704}
+  m_controller: {fileID: 1843357886}
   m_healthBar: {fileID: 1127906607}
   m_staminaBar: {fileID: 1147109739}
   m_health: 100
@@ -1592,7 +1591,6 @@ MonoBehaviour:
   m_maxStamina: 100
   m_speed: 0
   m_maxSpeed: 0
-  m_controller: {fileID: 1843357888}
 --- !u!54 &1289324559
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1759,17 +1757,23 @@ MonoBehaviour:
   - Jump
   - Punch
   - BlockPunch
+  - Win
+  - Lose
   m_playerInput:
   - m_keyCode: 0
     m_inputType: 0
   - m_keyCode: 304
-    m_inputType: 0
+    m_inputType: 1
   - m_keyCode: 32
-    m_inputType: 0
+    m_inputType: 1
   - m_keyCode: 105
-    m_inputType: 0
+    m_inputType: 1
   - m_keyCode: 106
     m_inputType: 1
+  - m_keyCode: 0
+    m_inputType: 0
+  - m_keyCode: 0
+    m_inputType: 0
   player: {fileID: 1820599709}
 --- !u!4 &1451409830
 Transform:
@@ -2055,6 +2059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_opponent: {fileID: 1289324553}
+  m_controller: {fileID: 1451409828}
   m_healthBar: {fileID: 1148050462}
   m_staminaBar: {fileID: 1147109739}
   m_health: 100
@@ -2063,7 +2068,6 @@ MonoBehaviour:
   m_maxStamina: 100
   m_speed: 5
   m_maxSpeed: 5
-  m_controller: {fileID: 1451409829}
 --- !u!54 &1820599710
 Rigidbody:
   m_ObjectHideFlags: 0

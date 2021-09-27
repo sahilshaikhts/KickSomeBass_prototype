@@ -6,4 +6,7 @@ using UnityEngine;
 public interface IUtilityAI
 {
     float EvaulateAbilityUtility(IFighterCharacter Fighter);
+
+    bool GetVeto();
+
 }

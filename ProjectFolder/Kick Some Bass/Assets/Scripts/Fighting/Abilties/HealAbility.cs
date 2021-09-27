@@ -6,6 +6,8 @@ using UnityEngine.Assertions;
 
 public class HealAbility : IFightAbility, IUtilityAI
 {
+    bool m_veto = false;
+
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
@@ -29,4 +31,7 @@ public class HealAbility : IFightAbility, IUtilityAI
         }
         return 3.0f;
     }
+
+    public bool GetVeto() { return m_veto; }
+
 }

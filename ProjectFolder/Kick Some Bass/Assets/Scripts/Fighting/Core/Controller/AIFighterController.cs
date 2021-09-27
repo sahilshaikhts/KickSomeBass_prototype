@@ -19,6 +19,13 @@ public class AIFighterController : MonoBehaviour
 
                 float utilityScore = AIAbility.EvaulateAbilityUtility(EnemyAI);
 
+                //Break immediately if someused veto.
+                if(AIAbility.GetVeto())
+                {
+                    priorityMove = new Tuple<float, string>(utilityScore, fightAbility);
+                    break;
+                }
+
                 if (utilityScore > priorityMove.Item1)
                 {
                     priorityMove = new Tuple<float, string>(utilityScore, fightAbility);
@@ -31,13 +38,13 @@ public class AIFighterController : MonoBehaviour
     public virtual void Update()
     {
         string currentActionName = EvaluateAppropriateAction();
-        ExecuteAction(currentActionName);
+        PerformAction(currentActionName);
 
 
-        ExecuteAction("Movement");
+        PerformAction("Movement");
     }
 
-    private void ExecuteAction(string abilityName)
+    private void PerformAction(string abilityName)
     {
         if (abilityName == "Null") { abilityName = "Idle"; }
 

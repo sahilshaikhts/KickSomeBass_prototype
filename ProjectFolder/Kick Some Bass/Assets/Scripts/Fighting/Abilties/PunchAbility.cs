@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 
 public class PunchAbility : IFightAbility, IUtilityAI
 {
+    bool m_veto = false;
 
     public override void PerformAction(IFighterCharacter fighter)
     {
@@ -51,4 +52,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
     {
         return 0;
     }
+
+    public bool GetVeto() { return m_veto; }
+
 }

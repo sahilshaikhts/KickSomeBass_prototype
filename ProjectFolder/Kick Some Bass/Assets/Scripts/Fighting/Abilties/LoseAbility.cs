@@ -5,12 +5,18 @@ using AbilitySpace;
 
 public class LoseAbility : IFightAbility, IUtilityAI
 {
-    public override void PerformAction(IFighterCharacter InstigatorObject)
+    bool m_veto = false;
+
+    public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
+
+        fighter.DisableAbilityUsage();
+
+        Debug.Log("Should play fall/lose animation!");
     }
 
-    public override void Animation(IFighterCharacter InstigatorObject)
+    public override void Animation(IFighterCharacter fighter)
     {
 
     }
@@ -22,6 +28,14 @@ public class LoseAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
+        if(Fighter.IsDead())
+        {
+            m_veto = true;
+        }
+
         return 0;
     }
+
+    public bool GetVeto() { return m_veto; }
+
 }

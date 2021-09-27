@@ -6,6 +6,8 @@ using AbilitySpace;
 
 public class DashAbility : IFightAbility, IUtilityAI
 {
+    bool m_veto = false;
+
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
@@ -32,13 +34,12 @@ public class DashAbility : IFightAbility, IUtilityAI
         fighter.GetComponent<Animator>().SetTrigger("Dash");
     }
 
-    public override string GetAbilityName()
-    {
-        return "Dash";
-    }
+    public override string GetAbilityName() { return "Dash"; }
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
         return 0;
     }
+
+    public bool GetVeto() { return m_veto; }
 }

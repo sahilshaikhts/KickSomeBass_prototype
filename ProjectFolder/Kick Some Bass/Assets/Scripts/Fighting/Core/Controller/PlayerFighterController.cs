@@ -10,6 +10,7 @@ public class PlayerFighterController : MonoBehaviour
     {
         public enum InputType
         {
+            None,
             KeyPressedOnce,
             KeyPressed,
             KeyUp,
