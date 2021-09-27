@@ -29,4 +29,8 @@ public class IdleAbility : IFightAbility, IUtilityAI
 
     public bool GetVeto() { return m_veto; }
 
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<IdleAbility>();
+    }
 }

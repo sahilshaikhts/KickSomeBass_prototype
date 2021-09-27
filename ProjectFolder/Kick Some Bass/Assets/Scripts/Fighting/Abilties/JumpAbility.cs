@@ -14,9 +14,10 @@ public class JumpAbility : IFightAbility, IUtilityAI
 
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
+
         if (CheckIfOnGround(fighter))
         {
-            fighter.GetComponent<Rigidbody>().AddForce(fighter.transform.up * 10, ForceMode.VelocityChange);
+            fighter.GetComponent<Rigidbody>().AddForce(fighter.transform.up*Time.fixedDeltaTime *510, ForceMode.VelocityChange);
         }
     }
 
@@ -50,4 +51,8 @@ public class JumpAbility : IFightAbility, IUtilityAI
     }
     public bool GetVeto() { return m_veto; }
 
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<JumpAbility>();
+    }
 }

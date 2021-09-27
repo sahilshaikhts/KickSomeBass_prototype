@@ -7,14 +7,12 @@ using AbilitySpace;
 public class DashAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-
     public override void PerformAction(IFighterCharacter fighter)
     {
         Debug.Log(GetAbilityName());
 
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
-
 
         //If not already dashing
         if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Dash"))
@@ -23,7 +21,7 @@ public class DashAbility : IFightAbility, IUtilityAI
 
             if (fighter.GetComponent<Rigidbody>().velocity.magnitude > 0.5f)
             {
-                fighter.GetComponent<Rigidbody>().AddForce(moveDirection.normalized, ForceMode.VelocityChange);
+                fighter.GetComponent<Rigidbody>().AddForce(moveDirection.normalized * (fighter.GetMaxMoveSpeed() * 1.5f) * Time.deltaTime, ForceMode.VelocityChange);
                 Animation(fighter);
             }
         }
@@ -42,4 +40,9 @@ public class DashAbility : IFightAbility, IUtilityAI
     }
 
     public bool GetVeto() { return m_veto; }
+
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<DashAbility>();
+    }
 }

@@ -26,4 +26,8 @@ public class NullAbility : IFightAbility, IUtilityAI
 
     public bool GetVeto() { return false; }
 
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<NullAbility>();
+    }
 }

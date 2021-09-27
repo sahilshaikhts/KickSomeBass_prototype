@@ -892,6 +892,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656045927}
   m_CullTransparentMesh: 1
+--- !u!1 &721207512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721207513}
+  - component: {fileID: 721207514}
+  m_Layer: 3
+  m_Name: BlockPunchCold
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &721207513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721207512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.432, z: 0.64}
+  m_LocalScale: {x: 1, y: 1, z: 0.44843}
+  m_Children: []
+  m_Father: {fileID: 1820599708}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &721207514
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721207512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &774355538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1518,6 +1562,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1286477735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286477736}
+  m_Layer: 3
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1286477736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286477735}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.388, z: 0.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1289324557}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289324553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,6 +1604,7 @@ GameObject:
   - component: {fileID: 1289324559}
   - component: {fileID: 1289324558}
   - component: {fileID: 1289324554}
+  - component: {fileID: 1289324555}
   m_Layer: 3
   m_Name: FighterFish
   m_TagString: Untagged
@@ -1551,6 +1626,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1289324555
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289324553}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 070d255a3f64de54088bb2f41b44ed5f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &1289324557
 Transform:
   m_ObjectHideFlags: 0
@@ -1566,6 +1660,7 @@ Transform:
   - {fileID: 636202727}
   - {fileID: 466456959}
   - {fileID: 1015398453}
+  - {fileID: 1286477736}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2043,6 +2138,7 @@ Transform:
   - {fileID: 1834409316}
   - {fileID: 1741309065}
   - {fileID: 1952970215}
+  - {fileID: 721207513}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2066,8 +2162,8 @@ MonoBehaviour:
   m_maxHealth: 100
   m_stamina: 100
   m_maxStamina: 100
-  m_speed: 5
-  m_maxSpeed: 5
+  m_speed: 600
+  m_maxSpeed: 600
 --- !u!54 &1820599710
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2323,18 +2419,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d38f715fb12f747a53693953ba5974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAbilities:
+  m_enemyAbilitiesName:
+  - BlockPunch
   - Idle
-  - Movement
   - Win
   - Lose
   - Punch
   - Kick
-  - BlockPunch
-  - Dash
-  - Jump
   - Heal
-  EnemyAI: {fileID: 1289324558}
+  - Dash
+  m_enemyAI: {fileID: 1289324558}
+  m_fightAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 1866799524}
 --- !u!1 &1866799522
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456f9e8cdf2ed6c46813e507d8fb03d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 0
 --- !u!114 &1866799528
 MonoBehaviour:
   m_ObjectHideFlags: 0

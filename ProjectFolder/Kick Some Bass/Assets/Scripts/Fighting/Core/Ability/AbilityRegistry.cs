@@ -3,7 +3,7 @@ using AbilitySpace;
 
 public class AbilityRegistry : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         IFightAbility[] fightAbilities = GetComponents<IFightAbility>();
 

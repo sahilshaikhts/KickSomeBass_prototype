@@ -38,14 +38,8 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
             #endregion
 
-            fighterRigidBody.AddForce(moveDirection, ForceMode.Acceleration);
+            fighterRigidBody.AddForce(moveDirection * Time.deltaTime, ForceMode.Acceleration);
         }
-        else
-        {
-            fighterRigidBody.AddForce(-10 * new Vector3(fighterRigidBody.velocity.x, 0, fighterRigidBody.velocity.z).normalized);
-            return;
-        }
-
     }
 
     void RotateTowardsaOpponent(IFighterCharacter fighter)
@@ -75,4 +69,10 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
     public bool GetVeto() { return m_veto; }
 
+
+
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<MovementAbility>();
+    }
 }
