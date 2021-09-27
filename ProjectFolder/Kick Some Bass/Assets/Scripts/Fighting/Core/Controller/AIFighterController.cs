@@ -9,6 +9,8 @@ public class AIFighterController : MonoBehaviour
 
     [SerializeField] AbilitySpace.IFightAbility[] m_fightAbilities;
 
+    [SerializeField]float m_decisionDelay = 1.5f;
+    private float m_delayTimer;
     private void InitializeFightAbilities()
     {
         m_fightAbilities = new AbilitySpace.IFightAbility[m_enemyAbilitiesName.Length];
@@ -22,11 +24,12 @@ public class AIFighterController : MonoBehaviour
 
     private void Start()
     {
-         InitializeFightAbilities();
+        InitializeFightAbilities();
+        m_delayTimer = m_decisionDelay;
     }
 
-    //Will run the algorithm to get appropriate action for specific AI.
-    public string EvaluateAppropriateAction()
+//Will run the algorithm to get appropriate action for specific AI.
+public string EvaluateAppropriateAction()
     {
         Tuple<float, string> priorityMove = new Tuple<float, string>(0.0f, "Null");
 
@@ -53,9 +56,20 @@ public class AIFighterController : MonoBehaviour
 
     public virtual void Update()
     {
-        string currentActionName = EvaluateAppropriateAction();
+        m_enemyAI.ChangeStamina((int)(125 * Time.deltaTime));
 
-        PerformAction("currentActionName");
+
+        m_delayTimer -= Time.deltaTime;
+
+        if(m_delayTimer <= 0.0f)
+        {
+            m_delayTimer = m_decisionDelay; 
+
+            string currentActionName = EvaluateAppropriateAction();
+
+            PerformAction(currentActionName);
+
+        }
 
         PerformAction("Movement");
     }

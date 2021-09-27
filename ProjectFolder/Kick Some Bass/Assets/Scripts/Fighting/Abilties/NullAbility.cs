@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
-using UnityEngine.Assertions;
 
 public class NullAbility : IFightAbility, IUtilityAI
 {
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
         Debug.Log(GetAbilityName());
     }

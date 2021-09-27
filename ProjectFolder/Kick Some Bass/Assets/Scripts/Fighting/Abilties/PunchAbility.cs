@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 using UnityEngine.Assertions;
@@ -8,8 +6,10 @@ public class PunchAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
+        if(fighter.GetStamina() < m_staminaConsumption) { return; }
+
         Debug.Log(GetAbilityName());
 
         Assert.IsNotNull(fighter);
@@ -26,13 +26,13 @@ public class PunchAbility : IFightAbility, IUtilityAI
             {
                 if (hit.collider.gameObject == fighter.GetOpponent())
                 {
-                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 20, ForceMode.Impulse);
-                    hit.collider.gameObject.GetComponent<IFighterCharacter>().DealDamage(20);
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 2000 * Time.deltaTime, ForceMode.VelocityChange);
+                    hit.collider.gameObject.GetComponent<IFighterCharacter>().ChangeHealth(-10);
 
                 }
             }
 
-            fighter.ChangeStamina(-10);
+            fighter.ChangeStamina(-m_staminaConsumption);
         }
 
     }

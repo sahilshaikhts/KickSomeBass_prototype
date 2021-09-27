@@ -6,9 +6,14 @@ public class HealAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
+        if (fighter.GetStamina() < m_staminaConsumption) { return; }
+
         Debug.Log(GetAbilityName());
+
+        fighter.ChangeHealth(5);
+        fighter.ChangeStamina(-m_staminaConsumption);
     }
 
     public override void Animation(IFighterCharacter fighter)
@@ -21,21 +26,22 @@ public class HealAbility : IFightAbility, IUtilityAI
         return "Heal";
     }
 
+    public override IFightAbility GetInstance(GameObject Owner)
+    {
+        return Owner.AddComponent<HealAbility>();
+    }
+
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        Consideration playerHealth = new Consideration(CurveTypes.Linear, -1.5f, 1, 1, 0);
+        if(Fighter.GetHealth() / Fighter.GetMaxHealth() >= 1){ return 0; }
 
-        Fighter.DealDamage(1);
-        float score = ResponseCurve.GetOutputValue(playerHealth, Fighter.GetHealth() / Fighter.GetMaxHealth());
+        Consideration playerHealth = new Consideration(CurveTypes.Logistic, 7.5f, 1.0f, 0.0f, 0.6f);
 
-        Debug.Log("Utility Score : " + score + ", PlayerHealth : " + Fighter.GetHealth());
+        float score = ResponseCurve.GetOutputValue(playerHealth, Fighter.GetHealth()/ Fighter.GetMaxHealth());
+
         return score;
     }
 
     public bool GetVeto() { return m_veto; }
 
-    public override IFightAbility GetInstance(GameObject Owner)
-    {
-        return Owner.AddComponent<HealAbility>();
-    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
@@ -7,7 +5,7 @@ using AbilitySpace;
 public class DashAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
         Debug.Log(GetAbilityName());
 

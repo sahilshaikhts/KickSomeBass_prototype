@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AbilitySpace;
 
@@ -7,7 +5,7 @@ public class WinAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter InstigatorObject)
+    public override void PerformAction(IFighterCharacter InstigatorObject, AbilityState m_actionState)
     {
         Debug.Log(GetAbilityName());
 

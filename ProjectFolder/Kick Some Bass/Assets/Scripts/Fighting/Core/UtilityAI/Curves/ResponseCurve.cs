@@ -7,9 +7,8 @@ namespace UtilityAIHelpers
 public enum CurveTypes
 {
     Linear,         // y = mx + b;
-    Exponential,    
-    Logistic,
-    Logit
+    Quadratic,    
+    Logistic
 }
 
 public struct Consideration
@@ -49,16 +48,12 @@ static public class ResponseCurve
                 output = GetQuadraticOutput(consideration, input);
                 break;
 
-            case CurveTypes.Exponential:
-
+            case CurveTypes.Quadratic:    
                 output = GetQuadraticOutput(consideration, input);
                 break;
 
             case CurveTypes.Logistic:
                 output = GetLogisticOutput(consideration, input);
-                break;
-
-            case CurveTypes.Logit:
                 break;
         }
 
@@ -69,37 +64,19 @@ static public class ResponseCurve
     {
         float output = consideration.m * Mathf.Pow((input - consideration.c), consideration.k) + consideration.b;
 
-        output = Clamp(output);
+            output = Mathf.Clamp01(output);
 
-        return output;
+            return output;
     }
 
     private static float GetLogisticOutput(Consideration consideration, float input)
     {
-        float e = 2.718f;
+         float output = consideration.k * (1.0f / (1.0f + Mathf.Pow((1000.0f * consideration.m * Mathf.Exp(1)), input - consideration.c))) + consideration.b;
 
-        float output = 1 + (1000 * e * (Mathf.Pow(consideration.m, -input + consideration.c)));
-
-        output = consideration.k * ( 1 / output) + consideration.b;
-
-        output = Clamp(output);
+        output = Mathf.Clamp01(output);
 
         return output;
     }
 
-    private static float Clamp(float input, float minRange = 0.0f, float maxRange = 1.0f)
-    {
-        if(input >= maxRange)
-        {
-            input = maxRange;
-        }
-
-        if(input <= minRange)
-        {
-            input = minRange;
-        }
-
-         return input;
-    }
 }
 }

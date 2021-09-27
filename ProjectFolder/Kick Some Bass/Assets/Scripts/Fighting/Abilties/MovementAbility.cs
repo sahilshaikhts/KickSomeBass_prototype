@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
@@ -8,17 +6,14 @@ public class MovementAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
-        Debug.Log(GetAbilityName());
-
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
 
         Rigidbody fighterRigidBody = fighter.GetComponent<Rigidbody>();
 
         RotateTowardsaOpponent(fighter);
-
 
         if (fighter.GetMovementDirection().sqrMagnitude > 0)
         {

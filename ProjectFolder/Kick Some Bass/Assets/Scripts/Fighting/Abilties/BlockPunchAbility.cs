@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine;
 using AbilitySpace;
@@ -7,8 +5,7 @@ using AbilitySpace;
 public class BlockPunchAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-    [SerializeField] int count=0;
-    public override void PerformAction(IFighterCharacter fighter)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
     {
         Debug.Log(GetAbilityName());
 
@@ -23,8 +20,6 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
             punchBlocker.transform.position = Vector3.up*5;//fighter.transform.position + fighter.transform.forward+fighter.transform.up*1.5f;
 
             Animation(fighter);
-            count++;
-            Debug.Log(fighter.name + "Punch count - " + count);
         }
     }
 

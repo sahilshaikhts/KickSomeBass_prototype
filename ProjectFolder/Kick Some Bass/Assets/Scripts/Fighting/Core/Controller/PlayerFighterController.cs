@@ -28,6 +28,8 @@ public class PlayerFighterController : MonoBehaviour
 
     void Update()
     {
+        player.ChangeStamina((int)(125 * Time.deltaTime));
+
         player.ExecuteAction(AbilitiesFactory.GetAbility("Movement"));
 
         PerformAction();

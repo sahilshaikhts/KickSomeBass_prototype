@@ -23,28 +23,26 @@ public abstract class IFighterCharacter : MonoBehaviour
     public abstract void ExecuteAction(IFightAbility fightAbility);
     public void DisableAbilityUsage() { m_disableabilites = true; }
 
-    public void DealDamage(int amount) 
+    public void ChangeHealth(int amount) 
     {
-        m_health -= amount;
+        m_health += amount;
+
+        if (m_health <= 0) { m_IsDead = true; }
+
+        if (m_health >= m_maxHealth) { m_health = m_maxHealth; }
+
         m_healthBar.value = (float)m_health / m_maxHealth;
         
-        if (m_health <= 0) { m_IsDead = true; } 
     }
     
     public void ChangeStamina(int amount)
     {
         m_stamina += amount;
-        if (m_stamina <= 0) { m_stamina=0; } 
+        if (m_stamina <= 0) { m_stamina=0; }
+        if (m_stamina >= m_maxStamina) { m_stamina = m_maxStamina; }
 
         m_staminaBar.value = (float)m_stamina / m_maxStamina;
     }
-
-    public void Heal(int healAmount)
-    {
-        m_health += healAmount;
-        if(m_health >= m_maxHealth) { m_health = m_maxHealth; }
-    }
-
 
     #region getters
 
