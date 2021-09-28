@@ -13,17 +13,17 @@ public abstract class IFighterCharacter : MonoBehaviour
     [SerializeField] Slider m_staminaBar;
 
     [SerializeField] int m_health = 100, m_maxHealth = 100;
-    [SerializeField] int m_stamina=100,m_maxStamina=100;
+    [SerializeField] float m_stamina = 100, m_maxStamina = 100;
     [SerializeField] float m_speed, m_maxSpeed;
 
     private bool m_IsDead = false;
     protected bool m_disableabilites = false;
 
     public abstract Vector3 GetMovementDirection();
-    public abstract void ExecuteAction(IFightAbility fightAbility);
+    public abstract void ExecuteAction(IFightAbility fightAbility, AbilityState abilityState);
     public void DisableAbilityUsage() { m_disableabilites = true; }
 
-    public void ChangeHealth(int amount) 
+    public void ChangeHealth(int amount)
     {
         m_health += amount;
 
@@ -32,13 +32,13 @@ public abstract class IFighterCharacter : MonoBehaviour
         if (m_health >= m_maxHealth) { m_health = m_maxHealth; }
 
         m_healthBar.value = (float)m_health / m_maxHealth;
-        
+
     }
-    
-    public void ChangeStamina(int amount)
+
+    public void ChangeStamina(float amount)
     {
         m_stamina += amount;
-        if (m_stamina <= 0) { m_stamina=0; }
+        if (m_stamina <= 0) { m_stamina = 0; }
         if (m_stamina >= m_maxStamina) { m_stamina = m_maxStamina; }
 
         m_staminaBar.value = (float)m_stamina / m_maxStamina;

@@ -6,7 +6,7 @@ public class HealAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
         if (fighter.GetStamina() < m_staminaConsumption) { return; }
 

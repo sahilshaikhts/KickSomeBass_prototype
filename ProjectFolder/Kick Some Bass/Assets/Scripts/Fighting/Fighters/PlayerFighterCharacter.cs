@@ -4,11 +4,13 @@ using AbilitySpace;
 public class PlayerFighterCharacter : IFighterCharacter
 {
 
-    public override void ExecuteAction(IFightAbility fightAbility)
+    public override void ExecuteAction(IFightAbility fightAbility,AbilityState abilityState=AbilityState.Enter)
     {
         if(!m_disableabilites)
         {
-            fightAbility.PerformAction(this);
+            if (GetStamina() < fightAbility.GetRequiredStamina()) { return; }
+
+            fightAbility.PerformAction(this, abilityState);
         }
     }
 

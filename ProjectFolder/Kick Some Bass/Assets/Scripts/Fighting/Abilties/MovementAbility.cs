@@ -6,7 +6,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
         Assert.IsNotNull(fighter);
         Assert.IsNotNull(fighter.GetComponent<Rigidbody>());
@@ -44,7 +44,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
         lookTowards.x = 0;
         lookTowards.z = 0;
 
-        fighter.GetComponent<Rigidbody>().rotation = Quaternion.Slerp(fighter.GetComponent<Rigidbody>().rotation, lookTowards.normalized,2*Time.deltaTime);
+        fighter.GetComponent<Rigidbody>().rotation = Quaternion.Lerp(fighter.GetComponent<Rigidbody>().rotation, lookTowards.normalized,4*Time.deltaTime);
     }
 
     public override void Animation(IFighterCharacter fighter)

@@ -903,12 +903,12 @@ GameObject:
   - component: {fileID: 721207513}
   - component: {fileID: 721207514}
   m_Layer: 3
-  m_Name: BlockPunchCold
+  m_Name: PunchBlocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &721207513
 Transform:
   m_ObjectHideFlags: 0
@@ -917,8 +917,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721207512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.432, z: 0.64}
-  m_LocalScale: {x: 1, y: 1, z: 0.44843}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1820599708}
   m_RootOrder: 4
@@ -1562,36 +1562,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1286477735
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1286477736}
-  m_Layer: 3
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1286477736
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286477735}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.388, z: 0.74}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1289324557}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289324553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,14 +1623,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289324553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.44, y: 0, z: 3.5200005}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2002733641}
   - {fileID: 636202727}
   - {fileID: 466456959}
   - {fileID: 1015398453}
-  - {fileID: 1286477736}
+  - {fileID: 1619518764}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1852,6 +1822,7 @@ MonoBehaviour:
   - Jump
   - Punch
   - BlockPunch
+  - BlockPunch
   - Win
   - Lose
   m_playerInput:
@@ -1864,7 +1835,9 @@ MonoBehaviour:
   - m_keyCode: 105
     m_inputType: 1
   - m_keyCode: 106
-    m_inputType: 1
+    m_inputType: 2
+  - m_keyCode: 106
+    m_inputType: 3
   - m_keyCode: 0
     m_inputType: 0
   - m_keyCode: 0
@@ -1884,6 +1857,50 @@ Transform:
   m_Father: {fileID: 2078314516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1619518763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619518764}
+  - component: {fileID: 1619518765}
+  m_Layer: 3
+  m_Name: PunchBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1619518764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619518763}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 0.19999999}
+  m_Children: []
+  m_Father: {fileID: 1289324557}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1619518765
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619518763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1707006643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2160,8 +2177,8 @@ MonoBehaviour:
   m_staminaBar: {fileID: 1147109739}
   m_health: 100
   m_maxHealth: 100
-  m_stamina: 100
-  m_maxStamina: 100
+  m_stamina: 1000
+  m_maxStamina: 1000
   m_speed: 600
   m_maxSpeed: 600
 --- !u!54 &1820599710
@@ -2526,7 +2543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_staminaConsumption: 10
-  count: 0
 --- !u!114 &1866799528
 MonoBehaviour:
   m_ObjectHideFlags: 0

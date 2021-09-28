@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Fighting/TestArena.unity
+    guid: 25d695e4b8cb50045b228da2fdebc50e
   m_configObjects: {}

@@ -3,11 +3,11 @@ using AbilitySpace;
 
 public class OpponentFighterCharacter : IFighterCharacter
 {
-    public override void ExecuteAction(IFightAbility fightAbility)
+    public override void ExecuteAction(IFightAbility fightAbility,AbilityState abilityState)
     {
         if (!m_disableabilites)
         {
-            fightAbility.PerformAction(this);
+            fightAbility.PerformAction(this, abilityState);
         }
     }
 

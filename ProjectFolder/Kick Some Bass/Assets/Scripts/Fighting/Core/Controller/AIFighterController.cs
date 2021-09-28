@@ -10,7 +10,9 @@ public class AIFighterController : MonoBehaviour
     [SerializeField] AbilitySpace.IFightAbility[] m_fightAbilities;
 
     [SerializeField]float m_decisionDelay = 1.5f;
-    private float m_delayTimer;
+
+    private float m_delayTimer; 
+
     private void InitializeFightAbilities()
     {
         m_fightAbilities = new AbilitySpace.IFightAbility[m_enemyAbilitiesName.Length];
@@ -19,7 +21,6 @@ public class AIFighterController : MonoBehaviour
         {
             m_fightAbilities[i] = AbilitiesFactory.GetAbility(m_enemyAbilitiesName[i]).GetInstance(gameObject);
         }
-
     }
 
     private void Start()
@@ -61,20 +62,29 @@ public string EvaluateAppropriateAction()
 
         m_delayTimer -= Time.deltaTime;
 
-        if(m_delayTimer <= 0.0f)
+        if (m_delayTimer <= 0.0f)
         {
-            m_delayTimer = m_decisionDelay; 
+            m_delayTimer = m_decisionDelay;
 
             string currentActionName = EvaluateAppropriateAction();
 
             PerformAction(currentActionName);
 
         }
+        
+        if (Input.GetKey(KeyCode.V))
+            PerformAction("BlockPunch", AbilitySpace.AbilityState.Enter);
+        
+        if (Input.GetKeyUp(KeyCode.V))
+            PerformAction("BlockPunch", AbilitySpace.AbilityState.Exit);
+     
+        if (Input.GetKeyDown(KeyCode.M))
+            m_enemyAI.GetComponent<Animator>().SetTrigger("BlockPunch");
 
         PerformAction("Movement");
     }
 
-    private void PerformAction(string abilityName)
+    private void PerformAction(string abilityName,AbilitySpace.AbilityState abilityState= AbilitySpace.AbilityState.Enter)
     {
         if (abilityName == "Null") { abilityName = "Idle"; }
 
@@ -82,7 +92,7 @@ public string EvaluateAppropriateAction()
         {
             if(abilityName == m_enemyAbilitiesName[i])
             {
-                m_enemyAI.ExecuteAction(m_fightAbilities[i]);
+                m_enemyAI.ExecuteAction(m_fightAbilities[i], abilityState);
                 break;
             }
         }

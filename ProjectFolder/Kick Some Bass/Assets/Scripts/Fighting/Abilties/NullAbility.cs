@@ -3,7 +3,7 @@ using AbilitySpace;
 
 public class NullAbility : IFightAbility, IUtilityAI
 {
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
         Debug.Log(GetAbilityName());
     }

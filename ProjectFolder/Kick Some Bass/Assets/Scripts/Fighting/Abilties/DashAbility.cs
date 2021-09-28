@@ -5,7 +5,7 @@ using AbilitySpace;
 public class DashAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
         Debug.Log(GetAbilityName());
 
@@ -29,6 +29,8 @@ public class DashAbility : IFightAbility, IUtilityAI
     {
         fighter.GetComponent<Animator>().SetTrigger("Dash");
     }
+
+   
 
     public override string GetAbilityName() { return "Dash"; }
 

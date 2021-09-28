@@ -5,27 +5,59 @@ using AbilitySpace;
 public class BlockPunchAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
         Debug.Log(GetAbilityName());
 
         Assert.IsNotNull(fighter);
 
-        if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
+        if (actionState == AbilityState.Enter)
         {
-            GameObject punchBlocker = Instantiate(new GameObject("OBJ_PunchBlock"));
+            GameObject blockColliderObj = GetPunchBlockCollider(fighter);
 
-            punchBlocker.AddComponent<BoxCollider>();
-
-            punchBlocker.transform.position = Vector3.up*5;//fighter.transform.position + fighter.transform.forward+fighter.transform.up*1.5f;
-
+            if (blockColliderObj)
+            {
+                blockColliderObj.SetActive(true);
+            }
             Animation(fighter);
         }
+
+        if (actionState == AbilityState.Exit)
+        {
+            GameObject blockColliderObj = GetPunchBlockCollider(fighter);
+
+            if (blockColliderObj)
+            {
+                blockColliderObj.SetActive(false);
+                if (fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
+                {
+                    StopAnimation(fighter);
+                    fighter.ChangeStamina(-m_staminaConsumption);
+                }
+            }
+        }
+    }
+    
+    GameObject GetPunchBlockCollider(IFighterCharacter aFighter)
+    {
+        for (int i = 0; i < aFighter.transform.childCount; i++)
+        {
+            if (aFighter.transform.GetChild(i).name == "PunchBlocker")
+            {
+                return aFighter.transform.GetChild(i).gameObject;
+            }
+        }
+        return null;
     }
 
     public override void Animation(IFighterCharacter fighter)
     {
-        fighter.GetComponent<Animator>().SetTrigger("BlockPunch");
+        fighter.GetComponent<Animator>().SetBool("BlockPunch", true);
+    }
+
+    public void StopAnimation(IFighterCharacter fighter)
+    {
+        fighter.GetComponent<Animator>().SetBool("BlockPunch",false);
     }
 
     public override string GetAbilityName()

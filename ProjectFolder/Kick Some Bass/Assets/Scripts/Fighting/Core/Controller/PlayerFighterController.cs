@@ -20,7 +20,6 @@ public class PlayerFighterController : MonoBehaviour
         public InputType m_inputType;
     }
 
-
     [SerializeField] string[] playerAbilities;
     [SerializeField] InputKey[] m_playerInput;
 
@@ -60,10 +59,11 @@ public class PlayerFighterController : MonoBehaviour
             {
                 if (Input.GetKeyUp(m_playerInput[i].m_keyCode))
                 {
-                    player.ExecuteAction(AbilitiesFactory.GetAbility(playerAbilities[i]));
+                    player.ExecuteAction(AbilitiesFactory.GetAbility(playerAbilities[i]), AbilitySpace.AbilityState.Exit);
                 }
             }
         }
+
     }
 
     public Vector3 GetMovementDirection()

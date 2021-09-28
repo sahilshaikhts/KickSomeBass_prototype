@@ -5,7 +5,7 @@ public class WinAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter InstigatorObject, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter InstigatorObject, AbilityState actionState)
     {
         Debug.Log(GetAbilityName());
 

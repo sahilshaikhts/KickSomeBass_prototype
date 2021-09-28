@@ -6,9 +6,8 @@ public class PunchAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
 
-    public override void PerformAction(IFighterCharacter fighter, AbilityState m_actionState)
+    public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
-        if(fighter.GetStamina() < m_staminaConsumption) { return; }
 
         Debug.Log(GetAbilityName());
 
@@ -18,25 +17,25 @@ public class PunchAbility : IFightAbility, IUtilityAI
         {
             Animation(fighter);
 
-            //Check if in arm range
+            //Check if opponent in arm range
             RaycastHit hit;
             Ray ray = new Ray(fighter.transform.position + fighter.transform.up, fighter.transform.forward);
 
-            if (Physics.SphereCast(ray, 0.5f, out hit, 1.5f))
+            if (Physics.Raycast(ray,out hit,2,~0,QueryTriggerInteraction.Collide))
             {
                 if (hit.collider.gameObject == fighter.GetOpponent())
                 {
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 2000 * Time.deltaTime, ForceMode.VelocityChange);
                     hit.collider.gameObject.GetComponent<IFighterCharacter>().ChangeHealth(-10);
-
                 }
             }
 
             fighter.ChangeStamina(-m_staminaConsumption);
         }
-
     }
-
+    private void OnDrawGizmos()
+    {
+    }
     public override void Animation(IFighterCharacter fighter)
     {
         fighter.GetComponent<Animator>().SetTrigger("Punch");
