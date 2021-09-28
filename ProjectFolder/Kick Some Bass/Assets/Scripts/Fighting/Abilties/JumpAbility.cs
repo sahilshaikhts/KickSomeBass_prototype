@@ -27,7 +27,7 @@ public class JumpAbility : IFightAbility, IUtilityAI
     {
         Ray ray = new Ray(fighter.transform.position+Vector3.up, Vector3.down);
 
-        LayerMask mask = 1 << LayerMask.NameToLayer("Ground");
+        LayerMask mask = 1 << LayerMask.NameToLayer("ground");
 
         if (Physics.Raycast(ray,1, mask))
         {

@@ -23,7 +23,7 @@ public class projectile : MonoBehaviour
         {
             Destroy(gameObject);
             other.GetComponent<IFighterCharacter>().ChangeHealth(-10);
-            other.GetComponent<Rigidbody>().AddForce(-other.transform.forward * Time.deltaTime * 600, ForceMode.VelocityChange);
+            other.GetComponent<Rigidbody>().AddForce(-other.transform.forward * Time.deltaTime * 300, ForceMode.VelocityChange);
 
         }
     }

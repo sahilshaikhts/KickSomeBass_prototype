@@ -16,7 +16,7 @@ PlayerSettings:
   productName: KickSomeBass
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.42210513, g: 0.886, b: 0.34554, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.39607847, g: 0.7254902, b: 0.25490198, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 0.5
@@ -40,7 +40,7 @@ PlayerSettings:
     width: 1
     height: 1
   m_SplashScreenLogos:
-  - logo: {fileID: 21300000, guid: a1f8fefe39720764e853b37598c992f6, type: 3}
+  - logo: {fileID: 21300000, guid: 7222ddcfae5d4d344beeec01bed907e0, type: 3}
     duration: 5
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2

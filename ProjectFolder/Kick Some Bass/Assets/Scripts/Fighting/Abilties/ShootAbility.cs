@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 using AbilitySpace;
 using UnityEngine.Assertions;
 using UtilityAIHelpers;
@@ -14,7 +13,7 @@ public class ShootAbility : IFightAbility, IUtilityAI
     {
         m_staminaConsumption = 40.0f;
 
-        prfb_projectile = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fighting/prfb_projectile.prefab", typeof(GameObject));
+        prfb_projectile = (GameObject)Resources.Load("prfb_projectile");
         Debug.Log(GetAbilityName());
 
         Assert.IsNotNull(fighter);
@@ -31,7 +30,7 @@ public class ShootAbility : IFightAbility, IUtilityAI
 
             projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 15;
 
-            fighter.gameObject.GetComponent<Rigidbody>().AddForce(-fighter.transform.forward * Time.deltaTime * 600, ForceMode.VelocityChange);
+            fighter.gameObject.GetComponent<Rigidbody>().AddForce(-fighter.transform.forward * Time.deltaTime * 200, ForceMode.VelocityChange);
 
             fighter.ChangeStamina(-m_staminaConsumption);
 

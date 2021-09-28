@@ -48,10 +48,6 @@ public abstract class IFighterCharacter : MonoBehaviour
         if (m_health >= m_maxHealth){m_health = m_maxHealth;}
 
         m_healthBar.value = (float)m_health / m_maxHealth;
-        if(amount<0)
-        {
-           m_healthBar.gameObject.GetComponent<Animator>().SetTrigger("FlashRed");
-        }
     }
 
     public void ChangeStamina(float amount)
