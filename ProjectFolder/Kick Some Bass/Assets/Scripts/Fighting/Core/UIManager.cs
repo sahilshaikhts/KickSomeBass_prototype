@@ -33,4 +33,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void HideAllUI()
+    {
+        ToggleStatBars(false);
+        ui_screen_victory.SetActive(false);
+        ui_screen_loose.SetActive(false);
+    }
+
+    public void ShowStats()
+    {
+        ToggleStatBars(true);
+    }
 }

@@ -7,6 +7,7 @@ public class Humanoid : MonoBehaviour, IControllable
     Rigidbody m_rigidBody;
     
     [SerializeField] GameObject m_camera;
+    [SerializeField] GameObject levelManager;
 
     [SerializeField]float m_speed=5;
     
@@ -56,5 +57,14 @@ public class Humanoid : MonoBehaviour, IControllable
     public BaseCamera GetObjectCamera()
     {
         return  m_camera.GetComponent<BaseCamera>();
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "boat")
+        {
+            levelManager.GetComponent<LevelManager>().StartFishing();
+        }
     }
 }

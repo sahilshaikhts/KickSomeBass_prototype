@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class HookController : MonoBehaviour
 {
-    public float MovementSpeed = 5.0f;
-    public float DownwardSpeed = 2.0f;
+    [SerializeField]LevelManager levelManager;
+    public float MovementSpeed = 9;
+    public float DownwardSpeed = 5;
     
     private bool bfishCaught = false;
-    private float timer = 2.5f;
+    private float timer = 2.0f;
 
     void Update()
     {
@@ -37,7 +38,9 @@ public class HookController : MonoBehaviour
             timer -= Time.deltaTime;
 
         if (timer <= 0.0f)
-            SceneManager.LoadScene("Scene");
+        {
+            levelManager.StartFighting();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
