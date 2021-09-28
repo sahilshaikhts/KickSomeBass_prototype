@@ -53,12 +53,15 @@ public class Boid : MonoBehaviour
     void Move()
     {
         // rotate
-        float turnspeed = flock.turnspeed;
-        Quaternion turnDirection = Quaternion.FromToRotation(Vector3.forward, direction);
-        transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, turnDirection, Time.deltaTime * turnspeed);
-        // then move
+        if(flock)
+        {
+            float turnspeed = flock.turnspeed;
+            Quaternion turnDirection = Quaternion.FromToRotation(Vector3.forward, direction);
+            transform.rotation = Quaternion.RotateTowards(gameObject.transform.rotation, turnDirection, Time.deltaTime * turnspeed);
+            // then move
 
-        transform.position = transform.position + transform.forward * speed * Time.deltaTime;
+            transform.position = transform.position + transform.forward * speed * Time.deltaTime;
+        }
     }
 
     void Motivate()

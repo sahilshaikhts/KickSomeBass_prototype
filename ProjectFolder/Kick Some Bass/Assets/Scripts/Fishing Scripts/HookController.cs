@@ -1,44 +1,56 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HookController : MonoBehaviour
 {
-    public float MovementSpeed = 1.0f;
-    float velocity;
-
-    int i = 0;
-
-    void Start()
-    {
-        
-    }
+    public float MovementSpeed = 5.0f;
+    public float DownwardSpeed = 2.0f;
+    
+    private bool bfishCaught = false;
+    private float timer = 2.5f;
 
     void Update()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(horizontal > 0.001f || horizontal < 0.001f)
+        if(!bfishCaught)
         {
-            Vector3 direction = new Vector3(horizontal, 0.0f, 1.0f).normalized;
-            transform.position += direction * MovementSpeed * Time.deltaTime;
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
-            if(direction.magnitude >= 0.1f)
-            {
-                float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                float smoothTargetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref velocity, 0.75f);
-                transform.rotation = Quaternion.Euler(0, smoothTargetAngle, 0);
-            }
+            Vector3 direction = new Vector3(horizontal, -1.0f, vertical).normalized;
+            Vector3 newPosition;
+
+            newPosition.x = direction.x * MovementSpeed * Time.deltaTime;
+            newPosition.z = direction.z * MovementSpeed * Time.deltaTime;
+
+            //speed-up
+            if (Input.GetKey(KeyCode.LeftShift))
+                newPosition.y = direction.y * DownwardSpeed * 2.625f * Time.deltaTime;
+            else
+                newPosition.y = direction.y * DownwardSpeed * Time.deltaTime;
+
+            transform.position += newPosition;
         }
+
+        if(bfishCaught)
+            timer -= Time.deltaTime;
+
+        if (timer <= 0.0f)
+            SceneManager.LoadScene("Scene");
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Fish")
         {
-            i++;
-            Debug.Log("Fish-Caught " + i);
-            Destroy(other.gameObject);
+            Debug.Log("Fish-Caught");
+
+            if(other.gameObject)
+            {
+                Destroy(other.gameObject);
+                bfishCaught = true;
+            }
         }
     }
 }
