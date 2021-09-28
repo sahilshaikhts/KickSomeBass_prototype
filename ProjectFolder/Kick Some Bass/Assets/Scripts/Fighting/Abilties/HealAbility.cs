@@ -12,7 +12,7 @@ public class HealAbility : IFightAbility, IUtilityAI
 
         Debug.Log(GetAbilityName());
 
-        fighter.ChangeHealth(5);
+        fighter.ChangeHealth(15);
         fighter.ChangeStamina(-m_staminaConsumption);
     }
 

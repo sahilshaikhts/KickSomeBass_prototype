@@ -9,9 +9,11 @@ public class AIFighterController : MonoBehaviour
 
     [SerializeField] AbilitySpace.IFightAbility[] m_fightAbilities;
 
-    [SerializeField]float m_decisionDelay = 1.5f;
-
-    private float m_delayTimer; 
+    [SerializeField] float m_decisionDelay = 1.5f;
+    private bool m_move = false;
+    private float m_delayTimer;
+    private float m_keepMovingTimer;
+    private float moveDirection = 0.0f;
 
     private void InitializeFightAbilities()
     {
@@ -27,12 +29,13 @@ public class AIFighterController : MonoBehaviour
     {
         InitializeFightAbilities();
         m_delayTimer = m_decisionDelay;
+        m_keepMovingTimer = m_decisionDelay;
     }
 
 //Will run the algorithm to get appropriate action for specific AI.
 public string EvaluateAppropriateAction()
     {
-        Tuple<float, string> priorityMove = new Tuple<float, string>(0.0f, "Null");
+        Tuple<float, AbilitySpace.IFightAbility> priorityMove = new Tuple<float, AbilitySpace.IFightAbility>(0.0f, null);
 
         foreach (AbilitySpace.IFightAbility fightAbility in m_fightAbilities)
         {
@@ -41,24 +44,40 @@ public string EvaluateAppropriateAction()
             float utilityScore = AIAbility.EvaulateAbilityUtility(m_enemyAI);
 
             //Break immediately if someused veto.
-            if(AIAbility.GetVeto())
+            if (AIAbility.GetVeto())
             {
-                priorityMove = new Tuple<float, string>(utilityScore, fightAbility.GetAbilityName());
+                priorityMove = new Tuple<float, AbilitySpace.IFightAbility>(utilityScore, fightAbility);
                 break;
             }
 
             if (utilityScore > priorityMove.Item1)
             {
-                priorityMove = new Tuple<float, string>(utilityScore, fightAbility.GetAbilityName());
+                priorityMove = new Tuple<float, AbilitySpace.IFightAbility>(utilityScore, fightAbility);
             }
         }
-        return priorityMove.Item2;
+
+        if (priorityMove.Item2.GetAbilityName() == "Movement")
+        {
+            float score = priorityMove.Item1;
+
+            moveDirection = (score * 2) - 1;
+
+            m_move = true;
+
+            float verySmall = 0.35f;
+
+            if (moveDirection <= verySmall && moveDirection >= -verySmall)
+            {
+                moveDirection *= 2.2f;
+            }
+        }
+
+        return priorityMove.Item2.GetAbilityName();
     }
 
     public virtual void Update()
     {
-        m_enemyAI.ChangeStamina((int)(125 * Time.deltaTime));
-
+        m_enemyAI.ChangeStamina((int)(300 * Time.deltaTime));
 
         m_delayTimer -= Time.deltaTime;
 
@@ -69,19 +88,40 @@ public string EvaluateAppropriateAction()
             string currentActionName = EvaluateAppropriateAction();
 
             PerformAction(currentActionName);
-
         }
-        
-        PerformAction("Movement");
+
+        if (m_move)
+        {
+            m_keepMovingTimer -= Time.deltaTime;
+
+            PerformAction("Movement");
+
+            if (m_delayTimer <= 0.0f)
+            {
+                m_move = false;
+                moveDirection = 0.0f;
+            }
+        }
+
+        if (Vector3.Distance(m_enemyAI.transform.position, m_enemyAI.GetOpponent().transform.position) <= 3.0f)
+        {
+            m_move = false;
+            moveDirection = 0.0f;
+        }
+
+        if (!m_move)
+        {
+            PerformAction("Movement");
+        }
     }
 
     private void PerformAction(string abilityName,AbilitySpace.AbilityState abilityState= AbilitySpace.AbilityState.Enter)
     {
         if (abilityName == "Null") { abilityName = "Idle"; }
 
-        for(int i = 0; i < m_enemyAbilitiesName.Length; i++)
+        for (int i = 0; i < m_enemyAbilitiesName.Length; i++)
         {
-            if(abilityName == m_enemyAbilitiesName[i])
+            if (abilityName == m_enemyAbilitiesName[i])
             {
                 m_enemyAI.ExecuteAction(m_fightAbilities[i], abilityState);
                 break;
@@ -91,6 +131,9 @@ public string EvaluateAppropriateAction()
 
     public Vector3 GetMovementDirection()
     {
-        return Vector3.zero;
+        Vector3 moveDir = new Vector3(0.0f, 0.0f, moveDirection);
+        Debug.Log("AI Moved :" + moveDirection);
+
+        return moveDir;
     }
 }

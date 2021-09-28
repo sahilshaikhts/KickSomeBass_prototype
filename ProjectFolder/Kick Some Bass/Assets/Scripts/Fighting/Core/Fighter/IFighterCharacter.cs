@@ -50,6 +50,8 @@ public abstract class IFighterCharacter : MonoBehaviour
     public float GetMaxHealth() { return m_maxHealth; }
 
     public float GetStamina() { return m_stamina; }
+    public float GetMaxStamina() { return m_maxStamina; }
+
     public bool IsDead() { return m_IsDead; }
     public float GetMoveSpeed() { return m_speed; }
     public float GetMaxMoveSpeed() { return m_maxSpeed; }

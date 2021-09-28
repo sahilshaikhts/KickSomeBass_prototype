@@ -2452,7 +2452,7 @@ MonoBehaviour:
   - Heal
   m_enemyAI: {fileID: 1289324558}
   m_fightAbilities: []
-  m_decisionDelay: 2
+  m_decisionDelay: 1
 --- !u!1 &1866799522
 GameObject:
   m_ObjectHideFlags: 0

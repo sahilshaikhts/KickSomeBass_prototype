@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
+using UtilityAIHelpers;
 
 public class MovementAbility : IFightAbility, IUtilityAI
 {
@@ -22,7 +23,6 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
             moveDirection *= fighter.GetMoveSpeed();
 
-            #region temp 
             //ToDo write movement that add drag in the direction opposite to velocity and other things in actual project code
             float maxSpeed = fighter.GetMaxMoveSpeed();
 
@@ -30,8 +30,6 @@ public class MovementAbility : IFightAbility, IUtilityAI
             if (inputDirection.x < 0 && fighterRigidBody.velocity.x < -maxSpeed) moveDirection.x = 0;
             if (inputDirection.z > 0 && fighterRigidBody.velocity.z > maxSpeed) moveDirection.z = 0;
             if (inputDirection.z < 0 && fighterRigidBody.velocity.z < -maxSpeed) moveDirection.z = 0;
-
-            #endregion
 
             fighterRigidBody.AddForce(moveDirection * Time.deltaTime, ForceMode.Acceleration);
         }
@@ -59,7 +57,24 @@ public class MovementAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        return 0;
+        float[] scores = new float[2];
+
+        float distance = Vector3.Distance(Fighter.GetOpponent().transform.position, Fighter.transform.position);
+
+        if (distance < 3.0f) { return 0; }
+
+
+        Consideration fighterStamina = new Consideration(CurveTypes.Logistic, 10.0f, 1.3f, 0.0f, 0.46f);
+        scores[0] = 1 - ResponseCurve.GetOutputValue(fighterStamina, Fighter.GetStamina() / Fighter.GetMaxStamina());
+
+        Consideration fighterHealth = new Consideration(CurveTypes.Logistic, 10.0f, 1.3f, 0.0f, 0.46f);
+        scores[1] = 1 - ResponseCurve.GetOutputValue(fighterHealth, Fighter.GetHealth() / Fighter.GetMaxHealth());
+
+        //Debug.Log("Stamina: " + Fighter.GetStamina() + " Stamina Score: " + scores[0]);
+        //Debug.Log("Health: " + Fighter.GetHealth() + " Health Score: " + scores[1]);
+        //Debug.Log("Total Score: " + (scores[0] + scores[1]) / 3.0f);
+
+        return (scores[0] + scores[1]) / 3.0f;
     }
 
     public bool GetVeto() { return m_veto; }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using AbilitySpace;
 using UnityEngine.Assertions;
+using UtilityAIHelpers;
 
 public class PunchAbility : IFightAbility, IUtilityAI
 {
@@ -33,9 +34,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
             fighter.ChangeStamina(-m_staminaConsumption);
         }
     }
-    private void OnDrawGizmos()
-    {
-    }
+
     public override void Animation(IFighterCharacter fighter)
     {
         fighter.GetComponent<Animator>().SetTrigger("Punch");
@@ -49,7 +48,19 @@ public class PunchAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        return 0;
+        float[] scores = new float[2];
+
+        float distance = Vector3.Distance(Fighter.GetOpponent().transform.position, Fighter.transform.position);
+        if (distance > 3.0f) { return 0; }
+
+        scores[0] = 1;
+
+        Consideration fighterHealth = new Consideration(CurveTypes.InverseLogistic, 100000.0f, 0.5f, -0.5f, 0.37f);
+        scores[1] = ResponseCurve.GetOutputValue(fighterHealth, Fighter.GetHealth() / Fighter.GetMaxHealth());
+
+        //Debug.Log("fighterhealth score :" + (scores[0] + scores[1]) / 2.0f + " AI Health : " + Fighter.GetHealth());
+
+        return (scores[0] + scores[1]) / 2.0f;
     }
 
     public bool GetVeto() { return m_veto; }
