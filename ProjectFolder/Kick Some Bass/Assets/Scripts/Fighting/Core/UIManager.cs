@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] GameObject[] ui_stats_bars;
@@ -43,5 +43,15 @@ public class UIManager : MonoBehaviour
     public void ShowStats()
     {
         ToggleStatBars(true);
+    }
+
+    public void OnExit()
+    {
+        Application.Quit();
+    }
+
+    public void OnRestart()
+    {
+        SceneManager.LoadScene(0);
     }
 }

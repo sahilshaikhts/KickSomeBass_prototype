@@ -54,6 +54,12 @@ public class HookController : MonoBehaviour
                 Destroy(other.gameObject);
                 bfishCaught = true;
             }
+        }else
+        {
+            if (other.gameObject.tag == "bottom")
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }

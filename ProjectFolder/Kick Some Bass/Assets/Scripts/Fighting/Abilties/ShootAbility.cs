@@ -24,11 +24,19 @@ public class ShootAbility : IFightAbility, IUtilityAI
             m_state = AbilityState.running;
 
             //Use gun socket for position later
-            GameObject projectile = Instantiate(prfb_projectile, fighter.transform.position + fighter.transform.forward + fighter.transform.up, Quaternion.identity);
 
-            projectile.GetComponent<projectile>().SetShooter(fighter);
+            for (int i = -2; i < 2; i++)
+            {
+                float variance = 10 * i;
+                Quaternion rotation = Quaternion.AngleAxis(variance, transform.up);
 
-            projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 15;
+                GameObject projectile = Instantiate(prfb_projectile, fighter.transform.position +fighter.transform.forward + fighter.transform.up + new Vector3(i, 0, 0), rotation);
+                projectile.GetComponent<projectile>().SetShooter(fighter);
+
+                projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 20;
+            }
+
+            
 
             fighter.gameObject.GetComponent<Rigidbody>().AddForce(-fighter.transform.forward * Time.deltaTime * 200, ForceMode.VelocityChange);
 

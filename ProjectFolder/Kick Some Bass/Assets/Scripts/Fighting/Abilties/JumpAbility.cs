@@ -16,8 +16,6 @@ public class JumpAbility : IFightAbility, IUtilityAI
 
         if (CheckIfOnGround(fighter))
         {
-            Debug.LogWarning("jjj");
-
             fighter.GetComponent<Rigidbody>().AddForce(fighter.transform.up*Time.fixedDeltaTime *510, ForceMode.VelocityChange);
         }
     }

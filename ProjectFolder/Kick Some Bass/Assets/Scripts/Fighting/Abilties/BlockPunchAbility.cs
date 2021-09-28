@@ -30,11 +30,8 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
             if (blockColliderObj)
             {
                 blockColliderObj.SetActive(false);
-                if (fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("BlockPunch"))
-                {
-                    StopAnimation(fighter);
-                    fighter.ChangeStamina(-m_staminaConsumption);
-                }
+                fighter.GetComponent<Animator>().SetBool("BlockPunch", false);
+                fighter.ChangeStamina(-m_staminaConsumption);
             }
         }
     }
@@ -54,11 +51,6 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
     public override void Animation(IFighterCharacter fighter)
     {
         fighter.GetComponent<Animator>().SetBool("BlockPunch", true);
-    }
-
-    public void StopAnimation(IFighterCharacter fighter)
-    {
-        fighter.GetComponent<Animator>().SetBool("BlockPunch",false);
     }
 
     public override string GetAbilityName()

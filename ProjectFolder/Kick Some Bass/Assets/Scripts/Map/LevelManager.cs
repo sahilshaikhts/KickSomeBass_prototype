@@ -17,8 +17,8 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        StartFighting();
-     //   m_UIManger.HideAllUI();
+        m_UIManger.HideAllUI();     //uncomment for build
+     //   StartFighting(); //uncomment for testing
     }
 
     public void StartFishing()

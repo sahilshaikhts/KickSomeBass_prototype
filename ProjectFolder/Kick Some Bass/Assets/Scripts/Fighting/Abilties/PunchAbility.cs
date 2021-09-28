@@ -31,7 +31,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
                 if (hit.collider.gameObject == fighter.GetOpponent())
                 {
 
-                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 2000 * Time.deltaTime, ForceMode.VelocityChange);
+                    hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 1000 * Time.deltaTime, ForceMode.VelocityChange);
                     hit.collider.gameObject.GetComponent<IFighterCharacter>().ChangeHealth(-10);
                 }
             }

@@ -33,6 +33,8 @@ public abstract class IFighterCharacter : MonoBehaviour
         {
             m_IsDead = true;
             m_disableabilites = true;
+            Cursor.lockState = CursorLockMode.None;
+
             if (!GetComponent<PlayerFighterCharacter>())
             {
                 GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().PlayerWon();
