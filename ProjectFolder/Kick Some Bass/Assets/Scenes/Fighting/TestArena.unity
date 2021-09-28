@@ -1654,8 +1654,8 @@ MonoBehaviour:
   m_maxHealth: 100
   m_stamina: 100
   m_maxStamina: 100
-  m_speed: 600
-  m_maxSpeed: 600
+  m_speed: 500
+  m_maxSpeed: 500
 --- !u!54 &1289324559
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public string EvaluateAppropriateAction()
                 break;
             }
 
-            if (utilityScore > priorityMove.Item1)
+            if (utilityScore >= priorityMove.Item1)
             {
                 priorityMove = new Tuple<float, AbilitySpace.IFightAbility>(utilityScore, fightAbility);
             }
@@ -58,17 +58,15 @@ public string EvaluateAppropriateAction()
 
         if (priorityMove.Item2.GetAbilityName() == "Movement")
         {
-            float score = priorityMove.Item1;
-
-            moveDirection = (score * 2) - 1;
-
             m_move = true;
 
-            float verySmall = 0.35f;
-
-            if (moveDirection <= verySmall && moveDirection >= -verySmall)
+            if(priorityMove.Item1 > 0.5)
             {
-                moveDirection *= 2.2f;
+                moveDirection = 1.0f;
+            }
+            else if(priorityMove.Item1 < 0.5)
+            {
+                moveDirection = -1.0f;
             }
         }
 
@@ -103,7 +101,7 @@ public string EvaluateAppropriateAction()
             }
         }
 
-        if (Vector3.Distance(m_enemyAI.transform.position, m_enemyAI.GetOpponent().transform.position) <= 3.0f)
+        if (Vector3.Distance(m_enemyAI.transform.position, m_enemyAI.GetOpponent().transform.position) <= 5.0f)
         {
             m_move = false;
             moveDirection = 0.0f;

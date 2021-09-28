@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class PlayerFighterController : MonoBehaviour
 {
+    
     [System.Serializable]
     struct InputKey
     {
