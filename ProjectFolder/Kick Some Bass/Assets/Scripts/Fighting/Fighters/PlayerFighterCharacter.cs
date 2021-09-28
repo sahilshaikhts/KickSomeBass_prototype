@@ -8,7 +8,18 @@ public class PlayerFighterCharacter : IFighterCharacter
     {
         if(!m_disableabilites)
         {
-            if (GetStamina() < fightAbility.GetRequiredStamina()) { return; }
+            //if low Stamina and action type isn't exit,do nothing
+            if (GetStamina() < fightAbility.GetRequiredStamina()) 
+            {
+                m_staminaBar.gameObject.GetComponent<Animator>().SetTrigger("flashRed");
+
+                if (abilityState == AbilityState.Stopped)
+                {
+                    fightAbility.PerformAction(this, AbilityState.Stopped);
+                
+                }
+                return; 
+            }
 
             fightAbility.PerformAction(this, abilityState);
         }

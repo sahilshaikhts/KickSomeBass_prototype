@@ -8,7 +8,7 @@ public class projectile : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 14f);
+        Destroy(gameObject, 6f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,11 +19,12 @@ public class projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.GetComponent<IFighterCharacter>() == true)
+        if (other.GetComponent<IFighterCharacter>() == true) 
         {
+            Destroy(gameObject);
             other.GetComponent<IFighterCharacter>().ChangeHealth(-10);
             other.GetComponent<Rigidbody>().AddForce(-other.transform.forward * Time.deltaTime * 600, ForceMode.VelocityChange);
-            Destroy(gameObject);
+
         }
     }
 
