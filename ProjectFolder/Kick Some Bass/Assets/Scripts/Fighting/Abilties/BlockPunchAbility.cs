@@ -1,6 +1,7 @@
 using UnityEngine.Assertions;
 using UnityEngine;
 using AbilitySpace;
+using System.Collections;
 
 public class BlockPunchAbility : IFightAbility, IUtilityAI
 {
@@ -11,7 +12,7 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
 
         Assert.IsNotNull(fighter);
 
-        if (actionState == AbilityState.Enter)
+        if (actionState == AbilityState.Begin)
         {
             GameObject blockColliderObj = GetPunchBlockCollider(fighter);
 
@@ -22,7 +23,7 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
             Animation(fighter);
         }
 
-        if (actionState == AbilityState.Exit)
+        if (actionState == AbilityState.Stopped)
         {
             GameObject blockColliderObj = GetPunchBlockCollider(fighter);
 
@@ -74,4 +75,5 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<BlockPunchAbility>();
     }
+
 }

@@ -113,7 +113,7 @@ public string EvaluateAppropriateAction()
         }
     }
 
-    private void PerformAction(string abilityName,AbilitySpace.AbilityState abilityState= AbilitySpace.AbilityState.Enter)
+    private void PerformAction(string abilityName,AbilitySpace.AbilityState abilityState= AbilitySpace.AbilityState.Begin)
     {
         if (abilityName == "Null") { abilityName = "Idle"; }
 

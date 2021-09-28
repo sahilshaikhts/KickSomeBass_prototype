@@ -1,5 +1,6 @@
 using UnityEngine;
 using AbilitySpace;
+using System.Collections;
 
 public class IdleAbility : IFightAbility, IUtilityAI
 {
@@ -30,4 +31,7 @@ public class IdleAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<IdleAbility>();
     }
+
+      
+
 }

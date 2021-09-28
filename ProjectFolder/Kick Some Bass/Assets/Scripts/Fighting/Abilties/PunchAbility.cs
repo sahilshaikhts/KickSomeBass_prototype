@@ -2,6 +2,7 @@ using UnityEngine;
 using AbilitySpace;
 using UnityEngine.Assertions;
 using UtilityAIHelpers;
+using System.Collections;
 
 public class PunchAbility : IFightAbility, IUtilityAI
 {
@@ -16,6 +17,9 @@ public class PunchAbility : IFightAbility, IUtilityAI
 
         if (!fighter.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Punch"))
         {
+            m_state = AbilityState.running;
+            StartCoroutine(SwitchStateWithDelay(AbilityState.Stopped,.2f));
+
             Animation(fighter);
 
             //Check if opponent in arm range
@@ -26,6 +30,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
             {
                 if (hit.collider.gameObject == fighter.GetOpponent())
                 {
+
                     hit.collider.gameObject.GetComponent<Rigidbody>().AddForce(fighter.transform.forward * 2000 * Time.deltaTime, ForceMode.VelocityChange);
                     hit.collider.gameObject.GetComponent<IFighterCharacter>().ChangeHealth(-10);
                 }
@@ -69,4 +74,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<PunchAbility>();
     }
+
+    
+
 }

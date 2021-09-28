@@ -1,5 +1,6 @@
 using UnityEngine;
 using AbilitySpace;
+using System.Collections;
 
 public class LoseAbility : IFightAbility, IUtilityAI
 {
@@ -41,4 +42,7 @@ public class LoseAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<LoseAbility>();
     }
+
+    
+
 }

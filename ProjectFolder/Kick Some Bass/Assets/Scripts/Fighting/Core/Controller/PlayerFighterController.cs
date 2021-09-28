@@ -60,7 +60,7 @@ public class PlayerFighterController : MonoBehaviour
             {
                 if (Input.GetKeyUp(m_playerInput[i].m_keyCode))
                 {
-                    player.ExecuteAction(AbilitiesFactory.GetAbility(playerAbilities[i]), AbilitySpace.AbilityState.Exit);
+                    player.ExecuteAction(AbilitiesFactory.GetAbility(playerAbilities[i]), AbilitySpace.AbilityState.Stopped);
                 }
             }
         }

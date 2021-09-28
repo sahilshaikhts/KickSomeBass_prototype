@@ -8,15 +8,16 @@ public class projectile : MonoBehaviour
     {
         Destroy(gameObject, 14f);
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        //Check if its fighter 
-        if(other.GetComponent<projectile>()==true)
+        //Check if its fighter
+        if (other.GetComponent<projectile>() == true)
         {
             Destroy(gameObject);
         }
 
-        if (other.GetComponent<IFighterCharacter>()==true)
+        if (other.GetComponent<IFighterCharacter>() == true)
         {
             other.GetComponent<IFighterCharacter>().ChangeHealth(-10);
             other.GetComponent<Rigidbody>().AddForce(-other.transform.forward * Time.deltaTime * 600, ForceMode.VelocityChange);

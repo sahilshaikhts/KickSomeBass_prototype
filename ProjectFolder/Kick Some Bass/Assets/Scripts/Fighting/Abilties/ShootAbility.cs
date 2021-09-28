@@ -7,7 +7,6 @@ using System.Collections;
 public class ShootAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
-    bool canShoot = true;//temp,for setting firerate
     GameObject prfb_projectile;
 
     public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
@@ -17,30 +16,26 @@ public class ShootAbility : IFightAbility, IUtilityAI
 
         Assert.IsNotNull(fighter);
 
-        if (prfb_projectile)
+        if (prfb_projectile && m_state == AbilityState.Stopped)
         {
+            m_state = AbilityState.running;
+
             //Use gun socket for position later
-         if(canShoot)
-            {
-                GameObject projectile = Instantiate(prfb_projectile, fighter.transform.position + fighter.transform.forward + fighter.transform.up, Quaternion.identity);
+            GameObject projectile = Instantiate(prfb_projectile, fighter.transform.position + fighter.transform.forward + fighter.transform.up, Quaternion.identity);
 
-                projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 15;
+            projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 15;
 
-                fighter.gameObject.GetComponent<Rigidbody>().AddForce(-fighter.transform.forward * Time.deltaTime*600, ForceMode.VelocityChange );
+            fighter.gameObject.GetComponent<Rigidbody>().AddForce(-fighter.transform.forward * Time.deltaTime * 600, ForceMode.VelocityChange);
 
-                fighter.ChangeStamina(-m_staminaConsumption);
+            fighter.ChangeStamina(-m_staminaConsumption);
 
-                canShoot = false;;
-                StartCoroutine(ShootingCoolDown());
-            }
+
+            StartCoroutine(SwitchStateWithDelay(AbilityState.Stopped, 1));
         }
     }
+    
 
-    IEnumerator ShootingCoolDown()
-    {
-        yield return new WaitForSeconds(1.0f);
-        canShoot = true;
-    }
+
     public override void Animation(IFighterCharacter fighter)
     {
     }

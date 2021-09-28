@@ -1,5 +1,6 @@
 using UnityEngine;
 using AbilitySpace;
+using System.Collections;
 
 public class KickAbility : IFightAbility, IUtilityAI
 {
@@ -31,4 +32,7 @@ public class KickAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<KickAbility>();
     }
+
+    
+
 }

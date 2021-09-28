@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
+using System.Collections;
 
 public class JumpAbility : IFightAbility, IUtilityAI
 {
@@ -53,4 +54,5 @@ public class JumpAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<JumpAbility>();
     }
+    
 }

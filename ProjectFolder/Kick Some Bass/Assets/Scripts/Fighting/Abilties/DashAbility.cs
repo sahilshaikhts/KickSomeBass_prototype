@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
+using System.Collections;
 
 public class DashAbility : IFightAbility, IUtilityAI
 {
@@ -45,4 +46,7 @@ public class DashAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<DashAbility>();
     }
+
+    
+
 }

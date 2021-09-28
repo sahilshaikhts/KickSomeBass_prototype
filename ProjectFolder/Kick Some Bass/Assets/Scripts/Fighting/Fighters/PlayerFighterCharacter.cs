@@ -4,7 +4,7 @@ using AbilitySpace;
 public class PlayerFighterCharacter : IFighterCharacter
 {
 
-    public override void ExecuteAction(IFightAbility fightAbility,AbilityState abilityState=AbilityState.Enter)
+    public override void ExecuteAction(IFightAbility fightAbility,AbilityState abilityState=AbilityState.Begin)
     {
         if(!m_disableabilites)
         {

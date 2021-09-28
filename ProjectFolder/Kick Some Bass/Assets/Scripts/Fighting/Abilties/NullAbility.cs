@@ -1,5 +1,6 @@
 using UnityEngine;
 using AbilitySpace;
+using System.Collections;
 
 public class NullAbility : IFightAbility, IUtilityAI
 {
@@ -27,4 +28,7 @@ public class NullAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<NullAbility>();
     }
+
+    
+
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using AbilitySpace;
 using UtilityAIHelpers;
+using System.Collections;
 
 public class MovementAbility : IFightAbility, IUtilityAI
 {
@@ -85,4 +86,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<MovementAbility>();
     }
+
+    
+
 }
