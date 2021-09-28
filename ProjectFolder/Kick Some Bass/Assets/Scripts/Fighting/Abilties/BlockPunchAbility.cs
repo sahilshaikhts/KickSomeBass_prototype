@@ -67,7 +67,7 @@ public class BlockPunchAbility : IFightAbility, IUtilityAI
     }
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        return 0;
+        return -1;
     }
     public bool GetVeto() { return m_veto; }
 

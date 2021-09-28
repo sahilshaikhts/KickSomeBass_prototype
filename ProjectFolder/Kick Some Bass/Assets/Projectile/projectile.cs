@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
+    private IFighterCharacter m_shooter;
+
     private void Start()
     {
         Destroy(gameObject, 14f);
@@ -24,4 +26,12 @@ public class projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetShooter(IFighterCharacter shooter)
+    {
+        m_shooter = shooter;
+    }
+
+    public IFighterCharacter GetShooter() { return m_shooter; }
+
 }

@@ -56,7 +56,7 @@ public class PunchAbility : IFightAbility, IUtilityAI
         float[] scores = new float[2];
 
         float distance = Vector3.Distance(Fighter.GetOpponent().transform.position, Fighter.transform.position);
-        if (distance > 3.0f) { return 0; }
+        if (distance > 3.0f) { return -1; }
 
         scores[0] = 1;
 

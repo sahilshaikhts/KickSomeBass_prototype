@@ -34,7 +34,7 @@ public class HealAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        if(Fighter.GetHealth() / Fighter.GetMaxHealth() >= 1){ return 0; }
+        if(Fighter.GetHealth() / Fighter.GetMaxHealth() >= 1){ return -1; }
 
         Consideration playerHealth = new Consideration(CurveTypes.Logistic, 7.5f, 1.0f, 0.0f, 0.6f);
 

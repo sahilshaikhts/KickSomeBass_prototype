@@ -46,7 +46,9 @@ public class JumpAbility : IFightAbility, IUtilityAI
 
     public float EvaulateAbilityUtility(IFighterCharacter Fighter)
     {
-        return 0;
+        m_veto = Fighter.GetController().transform.GetComponent<AIFighterController>().IsBulletInRange(5);
+
+        return -1;
     }
     public bool GetVeto() { return m_veto; }
 

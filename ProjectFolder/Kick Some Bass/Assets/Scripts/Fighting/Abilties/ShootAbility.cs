@@ -7,10 +7,13 @@ using System.Collections;
 public class ShootAbility : IFightAbility, IUtilityAI
 {
     bool m_veto = false;
+
     GameObject prfb_projectile;
 
     public override void PerformAction(IFighterCharacter fighter, AbilityState actionState)
     {
+        m_staminaConsumption = 40.0f;
+
         prfb_projectile = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Fighting/prfb_projectile.prefab", typeof(GameObject));
         Debug.Log(GetAbilityName());
 
@@ -18,10 +21,13 @@ public class ShootAbility : IFightAbility, IUtilityAI
 
         if (prfb_projectile && m_state == AbilityState.Stopped)
         {
+            fighter.ChangeStamina(-m_staminaConsumption);
             m_state = AbilityState.running;
 
             //Use gun socket for position later
             GameObject projectile = Instantiate(prfb_projectile, fighter.transform.position + fighter.transform.forward + fighter.transform.up, Quaternion.identity);
+
+            projectile.GetComponent<projectile>().SetShooter(fighter);
 
             projectile.GetComponent<Rigidbody>().velocity = fighter.transform.forward * 15;
 
@@ -30,11 +36,9 @@ public class ShootAbility : IFightAbility, IUtilityAI
             fighter.ChangeStamina(-m_staminaConsumption);
 
 
-            StartCoroutine(SwitchStateWithDelay(AbilityState.Stopped, 1));
+            StartCoroutine(SwitchStateWithDelay(AbilityState.Stopped, 2));
         }
     }
-    
-
 
     public override void Animation(IFighterCharacter fighter)
     {

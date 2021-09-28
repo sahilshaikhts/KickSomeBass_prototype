@@ -60,7 +60,7 @@ public string EvaluateAppropriateAction()
         {
             m_move = true;
 
-            if(priorityMove.Item1 > 0.5)
+            if(priorityMove.Item1 >= 0.5)
             {
                 moveDirection = 1.0f;
             }
@@ -75,7 +75,7 @@ public string EvaluateAppropriateAction()
 
     public virtual void Update()
     {
-        m_enemyAI.ChangeStamina((int)(300 * Time.deltaTime));
+        m_enemyAI.ChangeStamina((int)(250 * Time.deltaTime));
 
         m_delayTimer -= Time.deltaTime;
 
@@ -101,7 +101,7 @@ public string EvaluateAppropriateAction()
             }
         }
 
-        if (Vector3.Distance(m_enemyAI.transform.position, m_enemyAI.GetOpponent().transform.position) <= 5.0f)
+        if (Vector3.Distance(m_enemyAI.transform.position, m_enemyAI.GetOpponent().transform.position) <= 3.0f)
         {
             m_move = false;
             moveDirection = 0.0f;
@@ -133,5 +133,23 @@ public string EvaluateAppropriateAction()
         Debug.Log("AI Moved :" + moveDirection);
 
         return moveDir;
+    }
+
+    public bool IsBulletInRange(float range)
+    {
+        RaycastHit hit;
+
+        if (Physics.SphereCast(m_enemyAI.transform.position, range, m_enemyAI.transform.forward, out hit, 10))
+        {
+            if(hit.transform.gameObject.GetComponent<projectile>() is projectile)
+            {
+                if(hit.transform.gameObject.GetComponent<projectile>().GetShooter() != m_enemyAI)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
