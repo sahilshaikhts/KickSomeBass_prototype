@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Humanoid
   - ground
+<<<<<<< HEAD
   - UIManager
+=======
+  - Fish
+>>>>>>> 5ea2feaa0af790e89fd3e3079d41561d8bb4690a
   layers:
   - Default
   - TransparentFX
