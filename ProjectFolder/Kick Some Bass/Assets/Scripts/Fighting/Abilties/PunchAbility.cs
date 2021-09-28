@@ -74,7 +74,4 @@ public class PunchAbility : IFightAbility, IUtilityAI
     {
         return Owner.AddComponent<PunchAbility>();
     }
-
-    
-
 }

@@ -2450,6 +2450,7 @@ MonoBehaviour:
   - BlockPunch
   - Kick
   - Heal
+  - Shoot
   m_enemyAI: {fileID: 1289324558}
   m_fightAbilities: []
   m_decisionDelay: 0.75

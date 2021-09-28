@@ -63,7 +63,7 @@ public class MovementAbility : IFightAbility, IUtilityAI
         float distance = Vector3.Distance(Fighter.GetOpponent().transform.position, Fighter.transform.position);
 
         if (distance < 1.0f) { return -1; }
-
+        if(distance > 20.0f) { return 1; }
 
         Consideration fighterStamina = new Consideration(CurveTypes.Logistic, 10.0f, 1.3f, 0.0f, 0.46f);
         scores[0] = 1 - ResponseCurve.GetOutputValue(fighterStamina, Fighter.GetStamina() / Fighter.GetMaxStamina());
