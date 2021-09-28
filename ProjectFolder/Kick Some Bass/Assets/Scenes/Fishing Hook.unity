@@ -1167,13 +1167,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefab: {fileID: 7391217967124325501, guid: 597625062a5c7e94fa6b0a807a158c8f,
     type: 3}
-  boidPrefab: {fileID: 3702411550256936832, guid: cf503d1b7a4fb25499d3ad14f68c998d,
+  boidPrefab: {fileID: 8851346442640690556, guid: 7c0b36a50457be54da683cd18a381945,
     type: 3}
   numberOfBoids: 30
   numberOfObstacles: 1
   boids: []
-  spawnRadius: 6
-  speed: 0.5
+  spawnRadius: 8
+  speed: 1
   turnspeed: 60
   FOV: 60
   NeighborDistanceSquared: 64
@@ -1227,13 +1227,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefab: {fileID: 7391217967124325501, guid: 597625062a5c7e94fa6b0a807a158c8f,
     type: 3}
-  boidPrefab: {fileID: 3702411550256936832, guid: cf503d1b7a4fb25499d3ad14f68c998d,
+  boidPrefab: {fileID: 8851346442640690556, guid: 7c0b36a50457be54da683cd18a381945,
     type: 3}
   numberOfBoids: 30
   numberOfObstacles: 1
   boids: []
-  spawnRadius: 6
-  speed: 0.5
+  spawnRadius: 8
+  speed: 1
   turnspeed: 60
   FOV: 60
   NeighborDistanceSquared: 64
@@ -2165,13 +2165,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefab: {fileID: 7391217967124325501, guid: 597625062a5c7e94fa6b0a807a158c8f,
     type: 3}
-  boidPrefab: {fileID: 3702411550256936832, guid: cf503d1b7a4fb25499d3ad14f68c998d,
+  boidPrefab: {fileID: 8851346442640690556, guid: 7c0b36a50457be54da683cd18a381945,
     type: 3}
   numberOfBoids: 30
   numberOfObstacles: 1
   boids: []
-  spawnRadius: 6
-  speed: 0.5
+  spawnRadius: 8
+  speed: 1
   turnspeed: 60
   FOV: 60
   NeighborDistanceSquared: 64
@@ -3147,13 +3147,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObstaclePrefab: {fileID: 7391217967124325501, guid: 597625062a5c7e94fa6b0a807a158c8f,
     type: 3}
-  boidPrefab: {fileID: 3702411550256936832, guid: cf503d1b7a4fb25499d3ad14f68c998d,
+  boidPrefab: {fileID: 8851346442640690556, guid: 7c0b36a50457be54da683cd18a381945,
     type: 3}
   numberOfBoids: 30
   numberOfObstacles: 1
   boids: []
-  spawnRadius: 6
-  speed: 0.5
+  spawnRadius: 8
+  speed: 1
   turnspeed: 60
   FOV: 60
   NeighborDistanceSquared: 64
@@ -3228,7 +3228,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 764a52f67693f55449979a3c3aff4894, type: 2}
+  - {fileID: 2100000, guid: 099d8f5d3ac349148986aa0a5b7295ac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
