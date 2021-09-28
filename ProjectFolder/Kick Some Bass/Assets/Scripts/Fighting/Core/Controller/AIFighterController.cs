@@ -72,15 +72,6 @@ public string EvaluateAppropriateAction()
 
         }
         
-        if (Input.GetKey(KeyCode.V))
-            PerformAction("BlockPunch", AbilitySpace.AbilityState.Enter);
-        
-        if (Input.GetKeyUp(KeyCode.V))
-            PerformAction("BlockPunch", AbilitySpace.AbilityState.Exit);
-     
-        if (Input.GetKeyDown(KeyCode.M))
-            m_enemyAI.GetComponent<Animator>().SetTrigger("BlockPunch");
-
         PerformAction("Movement");
     }
 
